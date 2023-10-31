@@ -1,0 +1,27 @@
+{
+  "name": "sbb-relevance-test",
+  "version": "1.0.0",
+  "description": "Specs for relevance of stabikat search",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duncdrum/sbb-relevance-test.git"
+  },
+  "keywords": [
+    "sbb",
+    "solr",
+    "relevance"
+  ],
+  "author": "SBB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duncdrum/sbb-relevance-test/issues"
+  },
+  "homepage": "https://github.com/duncdrum/sbb-relevance-test#readme",
+  "devDependencies": {
+    "cypress": "^13.4.0"
+  }
+}
