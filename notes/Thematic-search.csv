@@ -1,0 +1,53 @@
+﻿Nr. ,Beispiel,Beschreibung der aktuellen Situation,Gewünschtes Verhalten (SW immer höher als Stichwort),Quelle,Anmerkungen
+,,,"Für alle Suchen:
+1. Kriterium: absteigend chronologisch
+Sacherschlossene Titel boosten
+Suchbegriff/e als Schlagwörter wird höher gerankt als Suchbegriff als Stichwort bzw. Wort in Inhaltsangabe oder anderes Feld
+Verlagsort disriminieren
+
+
+
+
+",,
+,,,"Für alle Suchen (wenn möglich):
+peer reviewte titel boosten
+Abstand zw. Suchtermini berücksichtigen
+absteigend chronologisch als erstes Relevanzkriterium, ergänzend als 2. Autor mit den meisten Publikationen im Index",,
+1,soziale frauenschule berlin,"zu viele Aufsätze vorne, Verlagsort Berlin","Treffer mit SE-Daten weiter nach oben / Verlagsort runterranken
+(Bsp. https://stabikat.de/Record/1615767711)",,"Beispieltreffer enthält ""Soziale Frauenschule"" im Titel
+Sollten Phrasen höher gewichtet werden? Also z.B. wenn die eingegebenen Suchbegriffe als Phrase  auftauchen"
+2,Narratologie,zu viele Aufsätze vorne,Vorne Treffer wie https://stabikat.de/Record/490244408, https://stabikat.de/Record/595354122,,Beispieltreffer enthalten den Suchbegriff im Titel
+3,emanzipation juden,ältere Titel vorne,chronologisch absteigend, SE boosten,* Matomo,evtl. aufgrund der Suchbegriffe ältere Titel?
+4,japan popular culture anime,teilw. Titel mit Schwerpunkt Tourismus vorne,"mehr Titel mit Fokus auf ""Anime"" vorne: Relevantere nach vorne (über SE?)
+",* Matomo,"Welche Gewichtung sollen Daten aus dem Inhaltsverzeichnis (SOLR fulltext) erhalten? ""Anime"" kommt teilweise (nur) dort vor"
+5,Griechische Mythologie,ältere Titel vorne,Vorne Treffer wie https://stabikat.de/Record/1756833699,* Matomo,
+6,Andreas Gryphius,ältere Titel vorne,chronologisch absteigend,Persona,
+7,Kulturgeschichte  deutsches Kaiserreich,ältere Titel vorne,"chronologisch absteigend, Abstand zw. Suchtermini",Persona,
+8,Osmanisches Reich im Ersten Weltkrieg,"crossref-Daten werden höher gerankt: Beispiel-Aufsatz ""T. E. Lawrence - Mythos und Wirklichkeit. Der arabische Aufstand und das Osmanische Reich im Ersten Weltkrieg"" ist drei Mal in der Trefferliste, der CrossRef-Datensatz ist deutlich weiter oben als die anderen: 
+1: https://stabikat.de/Record/info:doi:10.7788%252Fsaeculum.2001.52.1.55
+2: https://stabikat.de/Record/OLC2136322486
+3: https://stabikat.de/Record/OLC1618743244","Gleiche Daten möglichst zusammen/beieinander darstellen oder Dubletten ausblenden 
+
+",* Matomo,Sollte eine Datensatz-Quelle (neben der SBB-Kollektion) bevorzugt werden?
+,,"Trefferliste bezüglich des EJ ""gemischt"" ",aktuelle Literatur - Aufsätze und Bücher - vorne,,
+9,Caral America,Trefferliste ist hinsichtlich Aktualität okay, allerdings bei den passenden nur Artikel,aktuelle Literatur - Aufsätze und Bücher - vorne,* Matomo,"Das erste Buch in der Liste hat mit dem gesuchten Thema nichts zu tun. Im SOLR-Feld ""fulltext"" kommt das Wort Caral vor, ist hier allerdings ein Acronym, das eine Vereinigung bezeichnet (https://stabikat.de/Record/1612978711). 
+Die weiteren Buchtitel passen dann wieder. Hier kommt der Begriff Caral teilweise schon im Feld ""allfields"", sonst wieder bei ""fulltext"" vor.
+In diesem Titel (https://stabikat.de/Record/JST069657696) kommt ""Caral"" gar nicht vor, nur der Name ""Caralli"", was zusammen mit ""America"" offenbar schon ausreichte, um in die Trefferliste zu gelangen. Der Titel hat gar nichts mit dem Thema zu tun."
+10,esperanto ddr,"Treffer1, 2, 4, 5, 10  haben beide Suchbegriffe im Titel, https://stabikat.de/Record/011804599 finde ich ""DDR"" nur im Marc-Feld 263 (DDR-Preis)",Vorkommen eines Suchbegriffs im Titel höher ranken als im Zusatz zum Titel (DDR),,
+11,KI gesichtserkennung,"1. Aufsatz (online, 2022), 2. Aufsatz (online, 2021), 3. Mono (2021), 4. Aufsatz (gedr., 2021), Relevanz Mischung aus Schlag- und Stichwörtern in Aufnahme, Suche nach Schlagwörtern verändert Trefferliste erheblich (Ersch.jahre durcheinander, bessere Relevanz?)",SE höher ranken, chronologisch absteigend,Matomo: All Fields,
+12,koptische Stoffe,"5 erste Treffer mit genau diesem HST, Reihenfolge Ersch.jahre: 1966, 1967, 2986, 1959, 1970, alles Monos, nächster Treffer ""ein koptischer Stoff"" - nirgends im SOLR-DS tauchen die  Suchbegriffe auf.","chronologisch absteigend, SE höher ranken",Matomo: All Fields,
+13,soziale arbeit theorie,"3 erste Treffer Aufsätze online (2007, 2015, 2005), dann etl. Monos, Begriffe im HST / Zusatz",Boosten von Artikeln versus Monos? (Auswirkung auf chronolgisch absteigend),Matomo: All Fields,
+14,Zivopisnaja Rossija,1. gedr. Zsn, 2. Mono, 3. Schriftenreihe, 4. e-journal, 5. Mono = alle mit diesem HST (Zusatz zum HST teilw. Unterschiedlich),,Matomo: Stich-/ Schlagwörter,
+15,Todessymbolik,"1.+ 2. Treffer = Dublette (Aufsatz, online, 1990), 3. Treffer: ebanfalls dublett, aber gedr. Aufsatz, Titel ""Kollektive und individuelle Todessymbolik"". 4. Treffer ""Zur Todessymbolik der Tür"", gedr. Aufsatz, 1987. 5. Treffer erneut dubletter online-Aufsatz zu Treffer 1-3., 9. Treffer der erste ohne Suchbegriff im HST, Begriff im INhaltsverz.",Dublettenproblem,Matomo: All Fields,
+16,social media analytics,"1. Treffer: gedr. Aufsatz mit genau diesem Titel (dt.), 2. Treffer=online-Aufsatz ""Doing social media analytics, 3. Treffer = gedr. Aufsatz ""Social Media-Analyse"" (dt.), 4. Treffer = online-Aufsatz mit genau diesem Titel (engl.)",Abstand zw. Suchtermini,Matomo: All Fields,
+17,jugendliteratur mittelalter roman,Trefferreihenfolge: https://stabikat.de/Record/272952737/Permalink /  https://stabikat.de/Record/1507865600 / https://stabikat.de/Record/1016493053 / https://stabikat.de/Record/613754344 / https://stabikat.de/Record/470566760 /  (https://stabikat.de/Record/361321805 / https://stabikat.de/Record/524109214 [....] https://stabikat.de/Record/736565329 [...] https://stabikat.de/Record/015561968 = Mischung von Primär- und Sekundärliteratur,chronologisch absteigend, SE boosten,Matomo: All Fields,
+18,othering,"1. Treffer = gedr. Aufsatz (2020), Titel ""Otherin, Re-ohtering…"", 2. Treffer = online Aufsatz ""Othering"" (2015), 3. Treffer = Online-Ausatz ""Beyong Othering"" (2003)",Abstand zw. Suchtermini,Matomo: All Fields,
+19,affektive störung,http://b-dev20220203-vufind-6/Record/OLC2108288694/Permalink,Abstand zw. Suchtermini,Matomo: All Fields,
+20,Ensemblespiel und Klassenmusizieren,nur 1 Treffer, der mit dieser Wortfolge beginn.,passt,Matomo: All Fields,
+21,oliver heaviside,Erste Treffer sind Literatur über die Person,passt,Matomo: Title,
+22,history berlin / geschichte berlin,,"Verlagsort runterranken, ranking fremdspr. Themat. Suche",Termin am 26.9.23,
+23,German Intelligence,,Ranking fremdspr. Thematische Suche,"Matomo: All Fields
+auch testen als suche nach SW",
+,popular science soviet,,fremdspr. Thematische Suche,Matomo: All Fields,
+,"""Egyptian language"" / ""Ägyptische Sprache""",,fremdspr. Thematische Suche,Matomo: all fields,
+,,,,"in Matomo keine fremdspr. Suche nach ""Schlagwort"" gefunden",
