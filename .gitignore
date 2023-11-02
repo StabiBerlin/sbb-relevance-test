@@ -3,6 +3,9 @@
 
 # Environment
 node_modules/
+.env
+cypress.env.json
 
 # MS Office
 ~$*
+

@@ -1,8 +1,9 @@
 # Ranking 
 
 Test Server: `http://b-dev20220203-vufind-6/`
-Config Path: /var/www/vufind/local/config/vufind
-FTP: sftp://root@b-dev20220203-vufind-6/
+Reference Server: `http://search-dev.sbb.spk-berlin.de/` 
+Config Path: `/var/www/vufind/local/config/vufind`
+FTP: `sftp://root@b-dev20220203-vufind-6/`
 
 K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
 
@@ -19,7 +20,16 @@ K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
 ## TODO:
 
 1. ranking tool installiern
-2. get git and ndoe for Annette
+2. get git and node for Annette
+3. get SFTP Passwort
+4. get search.ini
+5. get ´searchspecs.yml´ from VF6
+
+## Discovery 
+
+- https://code.dev.sbb.berlin/discovery/core-module/-/blob/development/src/Core/Backend/Solr/LuceneSyntaxHelper.php
+
+- 
 
 ## Design
 
@@ -33,7 +43,7 @@ K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
    -  e2e helps II D to see results, automate screenshots etc.  
 - HOw to keep track of before and after
 - do we need screenshots?
-- response object only available from console on ranking server
+- response object  available from console on ranking and dev server 
 -  
 
 ## Further Reading
@@ -49,3 +59,4 @@ https://github.com/sul-dlss/sw_index_tests https://github.com/sul-dlss/searchwor
 https://github.com/traject/traject https://github.com/sul-dlss/traject_plus
 
 (https://github.com/sul-dlss/folio_qa_tests) :-) 
+
