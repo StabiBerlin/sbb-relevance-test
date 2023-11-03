@@ -1,0 +1,23 @@
+stages:
+  - test
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+    - .npm/
+
+test:
+  image: node:latest
+  stage: test
+  script:
+    # install dependencies
+    - npm ci
+    # run Cypress tests
+    - npx cypress run
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 7 day
