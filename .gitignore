@@ -1,2 +1,12 @@
+# Editors
 .vscode/
+
+# Environment
 node_modules/
+.env
+cypress.env.json
+notes/DP.md
+.DS_Store
+
+# MS Office
+~$*
