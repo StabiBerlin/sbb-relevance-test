@@ -19,7 +19,7 @@ K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
 
 ## TODO:
 
-1. ranking tool installiern
+1. ranking tool installieren
 2. get git and node for Annette
 3. get SFTP Passwort
 4. get search.ini
@@ -29,7 +29,7 @@ K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
 
 - https://code.dev.sbb.berlin/discovery/core-module/-/blob/development/src/Core/Backend/Solr/LuceneSyntaxHelper.php
 
-- 
+- https://vufind.org/wiki/configuration:search_customization 
 
 ## Design
 
