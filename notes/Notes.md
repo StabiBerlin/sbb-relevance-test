@@ -31,6 +31,10 @@ K:\IID\IID_0_Benutzungsabteilung\06_IT-Anwendungen\Discovery\2023\Ranking
 
 - https://vufind.org/wiki/configuration:search_customization 
 
+### searchspecs.yml
+
+- https://solr.apache.org/guide/7_7/function-queries.html#ms-function 
+
 ## Design
 
 -  VUfind Int test `SearchSortTest` https://vufind.org/jenkins/view/All/job/VuFind/javadoc/classes/VuFindTest-Mink-SearchSortTest.html
