@@ -5,6 +5,7 @@
 node_modules/
 .env
 cypress.env.json
+cypress/screenshots/
 notes/DP.md
 .DS_Store
 
