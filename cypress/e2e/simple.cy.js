@@ -11,13 +11,13 @@ describe('simple GUI spec', () => {
         })
     })
 
-    it('sees title in Browser', () => {
+    it('passes via Browser', () => {
         cy.get('.result-body')
           .contains('Dad : Roman')  
     })
 
     // This will be a 403 from world should connect from internal network
-    it('connects via http request', () => {
+    it('passes via http request', () => {
         cy.request({
             url: '/Results',
             qs: {
@@ -25,6 +25,20 @@ describe('simple GUI spec', () => {
             }
         }).then((resp) => {
             expect(resp.status).to.eq(200)
+        })
+       
+    })
+
+    // TODO(DP): get json repsonse from console
+    it.only('passes via http request', () => {
+        cy.request({
+            url: '/Results',
+            qs: {
+                lookfor: 'dad'
+            }
+        }).then((resp) => {
+            expect(resp.status).to.eq(200)
+        cy.log(resp)
         })
        
     })
