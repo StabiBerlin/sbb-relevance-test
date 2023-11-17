@@ -268,10 +268,28 @@ Subject:
     - series^100
     - series2
     - title_os_txtP_mv
+  DismaxParams:
+    - [bq, format:eJournal^237]
+    - [bq, format:Journal^284]
+    - [bq, format:eBook^255]
+    - [bq, format:Book^1000]
+    - [bq, format:Article^620]
+    - [bq, format:"electronic+Article"^620]
+    - [bq, format_facet:"Serienband"^0.1]
+    
+    - [bq, publishDateSort:2023^1280]
+    - [bq, publishDateSort:2022^1260]
+    - [bq, publishDateSort:2021^1240]
+    - [bq, publishDateSort:2020^1220]
+    - [bq, publishDateSort:2019^1200]
+    - [bq, publishDateSort:2018^1180]
+    - [bq, publishDateSort:2017^1160]
+    - [bq, publishDateSort:2016^1150]
+    - [bq, publishDateSort:2015^1140]
+    - [bq, publishDateSort:2014^1130]
+    - [bq, publishDateSort:2013^1120]
+    - [bq, publishDateSort:202*^1500]
   DismaxHandler: edismax
-#  ExactSettings:
-#    DismaxFields:
-#      - topic_unstemmed^150
 
 Keyword:
   DismaxFields:
@@ -363,8 +381,8 @@ AllFields:
     - topic_unstemmed^550
     - topic^500
     - geographic^300
-#   - class^240
-#   - bklname^250
+    - class^240
+    - bklname^250
     - genre^300
     - allfields_unstemmed^0.1
     - fulltext_unstemmed^0.1
