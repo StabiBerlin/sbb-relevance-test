@@ -1,13 +1,7 @@
 // Results?lookfor=dad&type=AllFields
 
 
-describe('simple GUI spec',
-    {
-        env: {
-            NO_PROXY: 'http://b-dev20220203-vufind-6/Search'
-        }
-    },
-    () => {
+describe('simple GUI spec', () => {
         before(() => {
             cy.visit({
                 url: '/Results',

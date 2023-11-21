@@ -22,7 +22,7 @@ v18.16.0
 
 ## Installation
 
-In windows powershell:
+Dieses Repo Klonen, und dann denn geklonten Ordner in Powershell öffnen:
 
 ```powershell
 npm i
@@ -34,7 +34,7 @@ Um direkt mit dem Findex zu kommunizieren müssen die [Proxy Einstellungen](http
 
 ```powershell
 $env:HTTP_PROXY = "http://proxy-dev.spk-berlin.de:3128"
-$env:NO_PROXY = "http://b-dev20220203-vufind-6"
+$env:NO_PROXY = "b-dev20220203-vufind-6"
 ```
 
 Permanente Einrichtung des `http_proxy`:
@@ -49,7 +49,9 @@ Zugangsdaten für den `vf6_user` müssen in der  `cypress.env.json` eingetragen 
     "vf6_user": {
         "vf6_name": "root",
         "vf6_pw": ""
-    }
+    },
+    "NO_PROXY": "b-dev20220203-vufind-6/*",
+    "HTTP_PROXY": "http://proxy-dev.spk-berlin.de:3128"
 }
 ```
 
