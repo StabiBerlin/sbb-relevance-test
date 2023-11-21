@@ -1,4 +1,4 @@
-describe.skip('simple api spec', () => {
+describe('simple api spec', () => {
     // Broken spec, findex rejects direct requests with 403 even from internatl network
     
     // before(() => {
@@ -19,7 +19,7 @@ describe.skip('simple api spec', () => {
 
     // This will be a 403 for world should connect from internal network
     // https://findex.gbv.de/index/11/select?q=collection%3AFID
-    it.skip('connects via http request', () => {
+    it('connects via http request', () => {
         cy.request({
             url: 'https://findex.gbv.de/index/11/select',
             qs: {
