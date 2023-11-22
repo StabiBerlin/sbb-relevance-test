@@ -93,7 +93,7 @@
 - Ranking je nach ausgewähltem Suchindex: Ziele evtl. verfeinern
   - sollte möglich sein, s. Workshop
 - Ranking je nach Suchsprache
-  - Ist im 2. Schritt entsprechend individueller Recherchebedürfnisse anpassbar
+  - Ist über Facette entsprechend individueller Recherchebedürfnisse anpassbar
 
 ### Zusammenspiel mit Facetten, z.B. Schlagwort
 
