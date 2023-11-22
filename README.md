@@ -30,7 +30,7 @@ npm i
 
 ### Konfiguration
 
-Um direkt mit dem Findex zu kommunizieren müssen die [Proxy Einstellungen](https://docs.cypress.io/guides/references/proxy-configuration) der cyress Umgebung manuel angepasst werden. 
+Um direkt mit dem Findex zu kommunizieren müssen die [Proxy Einstellungen](https://docs.cypress.io/guides/references/proxy-configuration) der cypress Umgebung manuel angepasst werden. 
 
 ```powershell
 $env:HTTP_PROXY = "http://proxy-dev.spk-berlin.de:3128"
