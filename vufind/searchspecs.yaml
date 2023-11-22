@@ -355,8 +355,7 @@ AllFields:
     - title_alt^200
     - title_new^100
     - series^50
-    - series^100
-#   - series2^30
+    - series2^30
     - author^300
 #   - authorswithroles_txt_mv^300    
     - contents^10
@@ -377,9 +376,6 @@ AllFields:
     - allfieldsGer^0.1
     - id^50
     - hierarchy_top_id
-    - journal^500
-    - is_hierarchy_title^500
-    - hierarchy_top_title^500
   DismaxParams:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
