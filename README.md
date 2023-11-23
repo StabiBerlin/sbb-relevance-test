@@ -39,7 +39,7 @@ $env:NO_PROXY = "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.1
 
 Permanente Einrichtung des `http_proxy`:
 ```powershell
-setx HTTP_PROXY http://proxy-dev.spk-berlin.de:3128
+setx HTTP_PROXY http://proxy.spk-berlin.de:3128
 ```
 
 Zugangsdaten für den `vf6_user` müssen in der  `cypress.env.json` eingetragen werden:
@@ -50,8 +50,8 @@ Zugangsdaten für den `vf6_user` müssen in der  `cypress.env.json` eingetragen 
         "vf6_name": "root",
         "vf6_pw": ""
     },
-    "NO_PROXY": "b-dev20220203-vufind-6/*",
-    "HTTP_PROXY": "http://proxy-dev.spk-berlin.de:3128"
+    "NO_PROXY": "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de",
+    "HTTP_PROXY": "http://proxy.spk-berlin.de:3128"
 }
 ```
 
