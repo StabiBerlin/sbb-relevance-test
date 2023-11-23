@@ -13,7 +13,7 @@ describe('simple api spec', () => {
     // })
 
 
-    it.skip('connects via URL', () => {
+    it.skip('connects via BaseURL', () => {
         cy.visit('select?q=collection%3AFID')
     })
 
