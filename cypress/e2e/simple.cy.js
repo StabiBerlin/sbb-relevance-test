@@ -12,7 +12,7 @@ describe('simple GUI spec', () => {
             })
         })
 
-        it.only('passes via Browser', () => {
+        it('passes via Browser', () => {
             cy.get('.result-body')
                 .contains('Dad : Roman')
         })
