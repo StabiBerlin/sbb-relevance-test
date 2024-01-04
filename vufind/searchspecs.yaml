@@ -244,6 +244,27 @@ Author:
     - GND_txt_mv
     - author_os_txtP_mv
   DismaxHandler: edismax
+  DismaxParams:
+    - [bq, format:eJournal^237]
+    - [bq, format:Journal^284]
+    - [bq, format:eBook^255]
+    - [bq, format:Book^500]
+    - [bq, format:Article^620]
+    - [bq, format:"electronic+Article"^620]
+    - [bq, format_facet:"Serienband"^0.1]
+    
+    - [bq, publishDateSort:2023^1280]
+    - [bq, publishDateSort:2022^1260]
+    - [bq, publishDateSort:2021^1240]
+    - [bq, publishDateSort:2020^1220]
+    - [bq, publishDateSort:2019^1200]
+    - [bq, publishDateSort:2018^1180]
+    - [bq, publishDateSort:2017^1160]
+    - [bq, publishDateSort:2016^1150]
+    - [bq, publishDateSort:2015^1140]
+    - [bq, publishDateSort:2014^1130]
+    - [bq, publishDateSort:2013^1120]
+    - [bq, publishDateSort:202*^1500]
 
 ISN:
   DismaxFields:
@@ -272,7 +293,7 @@ Subject:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
     - [bq, format:eBook^255]
-    - [bq, format:Book^1000]
+    - [bq, format:Book^500]
     - [bq, format:Article^620]
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
@@ -289,7 +310,7 @@ Subject:
     - [bq, publishDateSort:2014^1130]
     - [bq, publishDateSort:2013^1120]
     - [bq, publishDateSort:202*^1500]
-   DismaxHandler: edismax
+  DismaxHandler: edismax
 
 Keyword:
   DismaxFields:
@@ -334,7 +355,7 @@ JournalTitle:
 Title:
   DismaxFields:
     - title_short^500
-    - title_full_unstemmed^450
+    - title_full_unstemmed^650
     - title_full^400
     - title_fullGer^400
     - title^300
@@ -384,15 +405,15 @@ AllFields:
     - class^240
     - bklname^250
     - genre^300
-    - allfields_unstemmed^0.1
-    - fulltext_unstemmed^0.1
-    - allfields^0.1
-    - fulltext^0.1
-    - description^0.1
+    - allfields_unstemmed^10
+    - fulltext_unstemmed^10
+    - allfields
+    - fulltext
+    - description
     - isbn
     - issn
-    - long_lat_display^0.1
-    - allfieldsGer^0.1
+    - long_lat_display
+    - allfieldsGer
     - id^50
     - hierarchy_top_id
     - journal^500
@@ -406,7 +427,10 @@ AllFields:
     - [bq, format:Article^620]
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
-    
+    - [bq, format_facet:"Zeitschriften"^500]
+    - [bq, genre_facet:"Rezension"^0.1]
+    - [bq, genre_facet:"book-review"^0.1]
+     
     - [bq, publishDateSort:2023^280]
     - [bq, publishDateSort:2022^260]
     - [bq, publishDateSort:2021^240]
@@ -418,7 +442,8 @@ AllFields:
     - [bq, publishDateSort:2015^140]
     - [bq, publishDateSort:2014^130]
     - [bq, publishDateSort:2013^120]
-    - [bq, publishDateSort:202*^500]
+    - [bq, publishDateSort:202*^500]    
+   
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
 #    - [tie, 0.1]    
@@ -429,7 +454,7 @@ AllFields:
 JournalSearch:
   DismaxFields:
     - title_short^500
-    - title_full_unstemmed^450
+    - title_full_unstemmed^650
     - title_full^400
     - title^300
     - container_title^250
