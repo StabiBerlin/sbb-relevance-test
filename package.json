@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/duncdrum/sbb-relevance-test#readme",
   "devDependencies": {
-    "cypress": "^13.6.1",
+    "cypress": "^13.6.2",
     "yamljs": "^0.3.0"
   }
 }
