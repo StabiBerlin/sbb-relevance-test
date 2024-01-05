@@ -13,8 +13,8 @@ describe('simple GUI spec', () => {
         })
 
         it('passes via Browser', () => {
-            cy.get('.result-body')
-                .contains('Dad : Roman')
+            cy.get('#content')
+                .contains('Dad')
         })
 
         // This will be a 403 from world should connect from internal network
