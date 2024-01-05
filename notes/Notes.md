@@ -63,4 +63,3 @@ https://github.com/sul-dlss/sw_index_tests https://github.com/sul-dlss/searchwor
 https://github.com/traject/traject https://github.com/sul-dlss/traject_plus
 
 (https://github.com/sul-dlss/folio_qa_tests) :-) 
-

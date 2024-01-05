@@ -72,7 +72,13 @@ Oder via Browser GUI modus:
 npx cypress open
 ```
 
-Caveat: Sollte ein eine Browser spezifische Warnung erscheinen verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
+Caveat: Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
+
+Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat von ausserhalb des Hausnetzes:
+
+```powerhshell
+CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run -s cypress/e2e/simple.cy.js  
+```
 
 
 ```powershell

@@ -12,13 +12,13 @@ describe('simple GUI spec', () => {
             })
         })
 
-        it('passes via Browser', () => {
+        it('should see matching search results', () => {
             cy.get('#content')
                 .contains('Dad')
         })
 
         // This will be a 403 from world should connect from internal network
-        it('passes via http request', () => {
+        it('should also pass via http request', () => {
             cy.request({
                 url: '/Results',
                 qs: {
