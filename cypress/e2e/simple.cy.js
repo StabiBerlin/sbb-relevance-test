@@ -2,35 +2,35 @@
 
 
 describe('simple GUI spec', () => {
-        before(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'dad',
-                    type: 'AllFields'
-                }
-            })
+    before(() => {
+        cy.visit({
+            url: '/Results',
+            qs: {
+                lookfor: 'dad',
+                type: 'AllFields'
+            }
+        })
+    })
+
+    it('should see matching search results', () => {
+        cy.get('.resultlist')
+            .contains('Dad')
+    })
+
+    // This will be a 403 from world should connect from internal network
+    it('should also pass via http request', () => {
+        cy.request({
+            url: '/Results',
+            qs: {
+                lookfor: 'dad'
+            }
+        }).then((resp) => {
+            expect(resp.status).to.eq(200)
         })
 
-        it('should see matching search results', () => {
-            cy.get('#content')
-                .contains('Dad')
-        })
+    })
 
-        // This will be a 403 from world should connect from internal network
-        it('should also pass via http request', () => {
-            cy.request({
-                url: '/Results',
-                qs: {
-                    lookfor: 'dad'
-                }
-            }).then((resp) => {
-                expect(resp.status).to.eq(200)
-            })
-
-        })
-
-describe('Foreign language phrase search', () => {
+    describe('Foreign language phrase search', () => {
         // See #6 
         // Thematische Suche#L30
         it('en all fields query matches en not ar', () => {
@@ -61,24 +61,35 @@ describe('Foreign language phrase search', () => {
             cy.get('.resultlist')
                 // PPN JST063665204
                 .contains('The Egyptian Language')
-            cy.get('.resultlist')    
+            cy.get('.resultlist')
                 // PPN DOAJ008736839
                 .contains('المعانی الثانیة للأمر فی النص المصری القدیم دراسة بلاغیة مقارنة ')
 
         })
     })
 
-        // TODO(DP): get json repsonse from console
-        it('passes via http request', () => {
-            cy.request({
+    // see #8 
+    // Title search and online access false to limit noise
+    // check if exact match first list item is the journal parent and subsequent entries are child works
+    // a more elaborate test would compare the value of '.record-number' within the same family
+    // 
+    describe('Parent Work', () => {
+        it('should appear before child work', () => {
+            cy.visit({
                 url: '/Results',
                 qs: {
-                    lookfor: 'dad'
+                    lookfor: 'African American Review',
+                    type: 'Title',
+                    "filter[]": '~remote_bool:"false"'
                 }
-            }).then((resp) => {
-                expect(resp.status).to.eq(200)
-                cy.log(resp)
             })
+            cy.get('#result0')
+              .find('.media-type')
+              .contains(' Zeitschrift (gedruckt) ')
+            cy.get('#result1')
+              .find('.media-type')
+              .contains(' Band einer Zeitschrift/Zeitung ')
 
         })
     })
+})
