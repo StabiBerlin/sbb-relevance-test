@@ -19,7 +19,7 @@ describe('Review after reviewed', () => {
                 .should('exist')
         })
 
-        // TODO(DP): unskip after yaml changes
+        // TODO(DP): failing
         it.skip('first hit should not be a review', () => {
             cy.get('#result0')
                 .contains('Strategeme')
@@ -46,12 +46,63 @@ describe('Review after reviewed', () => {
                 .should('exist')
         })
 
-        // TODO(DP): unskip after yaml changes
-        it.skip('first hit should not be a review', () => {
+        // TODO(DP): failing
+        it('first hit should not be a review', () => {
             cy.get('#result0')
                 .contains('Manik')
                 .should('not.contain', 'Rezension')
                 .should('not.contain', 'Book Reviews')
+        })
+    })
+
+    describe('Die Organisierte Welt Internationale Beziehungen und Organisationsforschung', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Die Organisierte Welt Internationale Beziehungen und Organisationsforschung',
+                    type: 'AllFields'
+                }
+            })
+        })
+
+        // PPN 608988723
+        it('first hit matches Title', () => {
+            cy.get('#result0')
+                .find('[href*="608988723"]')
+                .should('exist')
+        })
+
+        it('second hit should be a review', () => {
+            cy.get('#result1')
+                .contains('Rezension')
+        })
+    })
+
+    describe('Young, Iris Marion (2002): Inclusion and Democracy. Oxford: Oxford University Press', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Young, Iris Marion (2002): Inclusion and Democracy. Oxford: Oxford University Press',
+                    type: 'AllFields', 
+                    limit: '10'
+                }
+            })
+        })
+
+        // PPN 315776242
+        // TODO(DP): failing
+        it('first hit matches exact title', () => {
+            cy.get('#result0')
+                .find('[href*="315776242"]')
+                .should('exist')
+        })
+
+        it.only('second hit should be a review', () => {
+            cy.get('#result1')
+                .should('exist')
+                .contains('Review')
         })
     })
 
