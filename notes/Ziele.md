@@ -29,7 +29,7 @@
     - [ ] Index 
     - [x] Ranking 
     - [ ] Nutzer konfigurierbar
-    - [ ] DONE
+    - [x] DONE
 6. Rezensionen runterranken,
     - [ ] Query 
     - [ ] Index 
