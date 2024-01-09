@@ -25,13 +25,13 @@ describe.skip('known item searches', () => {
     })
   })
 
-  it('Parent before child', () => {
-    cy.visit('/', {
-      qs: {
-        q: 'African American Review'
-      },
-    })
-  })
+  // it('Parent before child', () => {
+  //   cy.visit('/', {
+  //     qs: {
+  //       q: 'African American Review'
+  //     },
+  //   })
+  // })
 
   it('child should be first when child is searched', () => {
     cy.visit('/', {
