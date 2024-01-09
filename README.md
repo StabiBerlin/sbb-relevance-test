@@ -34,6 +34,7 @@ Um direkt mit dem [Findex](https://github.com/gbv/findex-config) zu kommuniziere
 
 ```powershell
 $env:HTTP_PROXY = "http://proxy.spk-berlin.de:3128"
+$env:HTTPS_PROXY = "HTTPS_PROXY=http://proxy-dev.spk-berlin.de:3128"
 $env:NO_PROXY = "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
 ```
 
@@ -72,14 +73,13 @@ Oder via Browser GUI modus:
 npx cypress open
 ```
 
-Caveat: Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
-
 Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat von ausserhalb des Hausnetzes:
 
 ```powerhshell
 CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run -s cypress/e2e/simple.cy.js  
 ```
 
+Caveat: Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
 
 ```powershell
 Cypress detected policy settings on your computer that may cause issues.
