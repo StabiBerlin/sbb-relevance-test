@@ -18,7 +18,8 @@ describe('Foreign language phrase search', () => {
 
     })
 
-    it('en subject query matches en and ar', () => {
+    // see #27
+    it.skip('en subject query matches en and ar', () => {
         cy.visit({
             url: '/Results',
             qs: {

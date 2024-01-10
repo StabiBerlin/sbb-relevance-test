@@ -26,8 +26,10 @@ jobs:
           config: baseUrl=https://stabikat.de/search/
           spec: |
             cypress/e2e/spec.cy.js
+            cypress/e2e/author.cy.js
             cypress/e2e/reviews.cy.js
             cypress/e2e/nested.cy.js
+            cypress/e2e/multi-lang-phrase.cy.js
         #   browser: firefox
       # Lint Yaml
       - name: Yaml Lint

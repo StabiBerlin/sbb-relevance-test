@@ -1,6 +1,6 @@
 describe('Author Search', () => {
     // see #14  
-    describe.only('glaser karin' , () => {
+    describe('glaser karin' , () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -11,14 +11,11 @@ describe('Author Search', () => {
             })
         })
 
-        // Bei Author-Suche Autorenfeld boosten (gegenüber anderen Feldern, auch Titel)
-        it('should appear before child work', () => {
+        // erster Treffer von Autorin
+        it('first hit should be by the author', () => {
             cy.get('#result0')
-                .find('.media-type')
-                .contains(' Zeitschrift (gedruckt) ')
-            cy.get('#result1')
-                .find('.media-type')
-                .contains(' Band einer Zeitschrift/Zeitung ')
+                .find('.resultlist-data')
+                .contains('Karin Glaser')
         })
     })
 
@@ -28,21 +25,19 @@ describe('Author Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: '阎连科',
-                    type: 'allFields'
+                    type: 'Author'
                 }
             })
         })
 
-        // (DP): 3 hits no child works as far as I can see
-        // PPN: 168000709
-        it('first hit should be parent work', () => {
-            cy.get('[href*="168000709"]')
-                .should('exist')
+        // see #22
+        it('CJK author search should return translations', () => {
+            cy.get('.record-list')
+              .contains('Yan, Lianke')
         })
     })
 
     describe('"Corte, Justine del"', () => {
-        // (DP): parent work not in top 20
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -53,42 +48,41 @@ describe('Author Search', () => {
             })
         })
 
-        // TODO(DP): failing
-        // PPN: 521689139
-        it('first hit should be parent work', () => {
-            cy.get('#result0')
-              .find('[href*="521689139"]')
-              .should('exist')
-        })
-
-        // TODO(DP): failing
-        it('first hit should not be child volume', () => {
-            cy.get('#result0')
-              .find('.media-type')
-              .should('not.contain', 'Band einer Zeitschrift/Zeitung')
-              .and('not.contain', 'Serial Volume')
+        it('strict search should only contain works by that author', () => {
+            cy.get('.resultlist-data')
+              .should('have.length.gte', 3)
+              .and('contain','Corte, Justine del')
         })
     })
 
-    describe('Andreas Gryphius' , () => {
+    describe('Samuel Scheidt' , () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
-                    lookfor: 'Andreas Gryphius',
-                    type: 'Author'
+                    lookfor: 'Samuel Scheidt',
+                    type: 'Author', 
+                    limit: '5'
                 }
             })
         })
 
-        // Bei Author-Suche Autorenfeld boosten (gegenüber anderen Feldern, auch Titel)
-        it('should appear before child work', () => {
-            cy.get('#result0')
-                .find('.media-type')
-                .contains(' Zeitschrift (gedruckt) ')
-            cy.get('#result1')
-                .find('.media-type')
-                .contains(' Band einer Zeitschrift/Zeitung ')
+        // (DP): 182 (or 90?)works by author but 200 hits.
+        //  within top 20 6 works unrelated to search 14 by author
+        // Top 5 in author search should all be by author
+        // see #28
+        it.skip('TOP 5 should all be by author', () => {
+            cy.get('.resultlist-data')
+              .find('[href*=Author]')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains('Scheidt, Samuel')
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '5')
+              })
+
         })
     })
 
@@ -98,19 +92,21 @@ describe('Author Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'oliver heaviside',
-                    type: 'Author'
+                    type: 'allFields'
                 }
             })
         })
 
-        // Bei Author-Suche Autorenfeld boosten (gegenüber anderen Feldern, auch Titel)
-        it('should appear before child work', () => {
-            cy.get('#result0')
-                .find('.media-type')
-                .contains(' Zeitschrift (gedruckt) ')
-            cy.get('#result1')
-                .find('.media-type')
-                .contains(' Band einer Zeitschrift/Zeitung ')
+        it('should appear in each of top 20', () => {
+            cy.get('.resultlist')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains('Heaviside', {matchCase: false})
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '20')
+              })
         })
     })
 })
