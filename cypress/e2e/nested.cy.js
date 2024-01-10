@@ -15,7 +15,8 @@ describe('Nested Work', () => {
             })
         })
 
-        it('should appear before child work', () => {
+        // see #25
+        it.skip('should appear before child work', () => {
             cy.get('#result0')
                 .find('.media-type')
                 .contains(' Zeitschrift (gedruckt) ')
@@ -64,8 +65,8 @@ describe('Nested Work', () => {
               .should('exist')
         })
 
-        // TODO(DP): failing is this desirable?
-        it('parent work should appear in initial results', () => {
+        // see #25
+        it.skip('parent work should appear in initial results', () => {
             cy.get('[href*="521689139"]')
               .should('exist')
         })

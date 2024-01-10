@@ -23,6 +23,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           build: npm install
-          config: baseUrl=https://stabikat.de/
-          spec: cypress/e2e/spec.cy.js
+          config: baseUrl=https://stabikat.de/search/
+          spec: |
+            cypress/e2e/spec.cy.js
+            cypress/e2e/reviews.cy.js
+            cypress/e2e/nested.cy.js
         #   browser: firefox
