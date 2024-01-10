@@ -244,24 +244,6 @@ Author:
     - GND_txt_mv
     - author_os_txtP_mv
   DismaxHandler: edismax
-   QueryFields:
-   author:
-       - [onephrase, 350]
-       - [author_initial, 100]
-    author2:
-       - [onephrase, 100]
-       - [author_initial, ~]
-    author_additional
-       - [onephrase, 100]
-       - [author_initial, ~]
-  ExactSettings:
-    QueryFields:
-      author:
-       - [onephrase, 350]
-      author2:
-        - [onephrase, 100]
-      author_additional:
-        - [onephrase, 100]
   DismaxParams:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
@@ -270,9 +252,19 @@ Author:
     - [bq, format:Article^620]
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
-      
-    - [bf=ord(publishDate)^500]  
-   
+    
+    - [bq, publishDateSort:2023^1280]
+    - [bq, publishDateSort:2022^1260]
+    - [bq, publishDateSort:2021^1240]
+    - [bq, publishDateSort:2020^1220]
+    - [bq, publishDateSort:2019^1200]
+    - [bq, publishDateSort:2018^1180]
+    - [bq, publishDateSort:2017^1160]
+    - [bq, publishDateSort:2016^1150]
+    - [bq, publishDateSort:2015^1140]
+    - [bq, publishDateSort:2014^1130]
+    - [bq, publishDateSort:2013^1120]
+    - [bq, publishDateSort:202*^1500]
 
 ISN:
   DismaxFields:
@@ -438,7 +430,7 @@ AllFields:
     - [bq, format_facet:"Zeitschriften"^500]
     - [bq, genre_facet:"Rezension"^0.1]
     - [bq, genre_facet:"book-review"^0.1]
-         
+     
     - [bq, publishDateSort:2023^280]
     - [bq, publishDateSort:2022^260]
     - [bq, publishDateSort:2021^240]
