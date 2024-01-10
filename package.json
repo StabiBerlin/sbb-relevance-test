@@ -4,7 +4,8 @@
   "description": "Specs for relevance of stabikat search",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "lint": "yamllint vufind/*.yaml"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/duncdrum/sbb-relevance-test#readme",
   "devDependencies": {
     "cypress": "^13.6.2",
+    "yaml-lint": "^1.7.0",
     "yamljs": "^0.3.0"
   }
 }

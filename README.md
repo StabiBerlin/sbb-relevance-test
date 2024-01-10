@@ -92,3 +92,11 @@ For more information, see https://on.cypress.io/bad-browser-policy
 ```
 
 In diese Fällen müssen Tests in `Electron` ausgeführt werden.
+
+### Yaml Prüfung
+
+Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
+
+```powershell
+npm run lint
+```
