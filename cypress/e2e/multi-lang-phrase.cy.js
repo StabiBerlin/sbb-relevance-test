@@ -35,4 +35,52 @@ describe('Foreign language phrase search', () => {
             .contains('المعانی الثانیة للأمر فی النص المصری القدیم دراسة بلاغیة مقارنة ')
 
     })
+
+    describe('history berlin', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'history berlin',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        it('should ...', () => {
+            cy.get('.resultlist')
+        })
+    })
+
+    describe('German Intelligence', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'German Intelligence',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        it('should ...', () => {
+            cy.get('.resultlist')
+        })
+    })
+
+    describe('popular science soviet', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'popular science soviet',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        it('should ...', () => {
+            cy.get('.resultlist')
+        })
+    })
 })
