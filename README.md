@@ -79,7 +79,19 @@ Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat von ausse
 CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run -s cypress/e2e/simple.cy.js  
 ```
 
-Caveat: Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
+### Yaml Prüfung
+
+Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
+
+```powershell
+npm run lint
+```
+
+## Troubleshooting
+
+### Cypress Browser Warning
+
+Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
 
 ```powershell
 Cypress detected policy settings on your computer that may cause issues.
@@ -93,10 +105,10 @@ For more information, see https://on.cypress.io/bad-browser-policy
 
 In diese Fällen müssen Tests in `Electron` ausgeführt werden.
 
-### Yaml Prüfung
+### NPM Installations Probleme
 
-Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
+Da der Proxy über `http` aufgerufen wird, muss uneter Umständen der strikte ssl modus deaktiviert werden.
 
 ```powershell
-npm run lint
+npm set strict-ssl false
 ```
