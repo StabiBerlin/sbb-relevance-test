@@ -85,6 +85,35 @@ describe('Author Search', () => {
 
         })
     })
+    describe('Friedrich Schiller' , () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Friedrich Schiller',
+                    type: 'Author', 
+                    limit: '30'
+                }
+            })
+        })
+
+        
+        // Top 30 in author search should all be by author
+        // see #28
+        it.only('TOP 30 should all be by author', () => {
+            cy.get('.resultlist-data')
+              .find('[href*=Author]')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains('Schiller, Friedrich')
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '30')
+              })
+
+        })
+    })
 
     describe('oliver heaviside' , () => {
         beforeEach(() => {
