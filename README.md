@@ -75,7 +75,7 @@ npx cypress open
 
 Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat von ausserhalb des Hausnetzes:
 
-```powerhshell
+```bash
 CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run -s cypress/e2e/simple.cy.js  
 ```
 
