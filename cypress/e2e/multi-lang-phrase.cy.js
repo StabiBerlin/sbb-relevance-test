@@ -1,5 +1,6 @@
 describe('Foreign language phrase search', () => {
-    // See #6 
+    // See #6
+    // see 31 
     // Thematische Suche#L30
     it('en all fields query matches en not ar', () => {
         cy.visit({
@@ -36,21 +37,44 @@ describe('Foreign language phrase search', () => {
 
     })
 
+    // see place.cy.js
+    // see #15
     describe('history berlin', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'history berlin',
-                    type: 'allFields'
+                    type: 'allFields', 
+                    limit: 10
                 }
             })
         })
 
-        it('should ...', () => {
+        // see #27
+        // poor results needs more fine tuning once more relvant hits are in the top 10
+        it.skip('should have both search terms in title', () => {
             cy.get('.resultlist')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains(/^(?=.*Berlin)(?=.*Histor.*)$/)
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '10')
+              })
+        })
+
+        it('TOP 1 should be in english', () => {
+            cy.get('.resultlist')
+              .first()
+              .click()
+            cy.get('.language')
+              .contains('Englisch')
         })
     })
+
+
 
     describe('German Intelligence', () => {
         beforeEach(() => {
@@ -58,13 +82,24 @@ describe('Foreign language phrase search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'German Intelligence',
-                    type: 'allFields'
+                    type: 'Subject'
                 }
             })
         })
-
-        it('should ...', () => {
+        // DP: 2nd hit is about intelligence of German Shepherds, passt oder?
+        // No idea why 1821166620 is shown
+        // poor results, we need better results to write better assertions
+        // see #27, #32
+        it.skip('should have German* in title', () => {
             cy.get('.resultlist')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains(/German.*/)
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '20')
+              })
         })
     })
 
@@ -79,8 +114,18 @@ describe('Foreign language phrase search', () => {
             })
         })
 
-        it('should ...', () => {
+        it('Top 1 should contain search terms in title', () => {
             cy.get('.resultlist')
+              .first()
+              .contains(/(?=.*Soviet.*)(?=.*Science)(?=.*Popular.*)/i)
+        })
+
+        it('Top 2 should contain search terms in details > subject', () => {
+            cy.get('#result1')
+              .find('.resultlist')      
+              .click()
+            cy.get('.col-sm-8')
+              .contains(/(?=.*Soviet.*)(?=.*Science)(?=.*Popular.*)/i)
         })
     })
 })
