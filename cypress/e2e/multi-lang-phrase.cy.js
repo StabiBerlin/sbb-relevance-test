@@ -128,4 +128,36 @@ describe('Foreign language phrase search', () => {
               .contains(/(?=.*Soviet.*)(?=.*Science)(?=.*Popular.*)/i)
         })
     })
+
+    describe('Boundary and the Making of Home', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Boundary and the Making of Home',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        it('should ...', () => {
+            cy.get('.resultlist')
+        })
+    })
+
+    describe('Zivopisnaja Rossija', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Zivopisnaja Rossija',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        it('should ...', () => {
+            cy.get('.resultlist')
+        })
+    })
 })
