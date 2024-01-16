@@ -15,7 +15,8 @@ describe('Author Search', () => {
         it('first hit should be by the author', () => {
             cy.get('#result0')
                 .find('.resultlist-data')
-                .contains('Karin Glaser')
+                .contains('Glaser, Karin')
+				
         })
     })
 
@@ -91,16 +92,16 @@ describe('Author Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'Friedrich Schiller',
-                    type: 'Author', 
-                    limit: '30'
+                    type: 'Author' 
+                    
                 }
             })
         })
 
         
-        // Top 30 in author search should all be by author
+        // Top 20 in author search should all be by author
         // see #28
-        it.only('TOP 30 should all be by author', () => {
+        it('Top 20 should all be by author', () => {
             cy.get('.resultlist-data')
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
@@ -109,7 +110,7 @@ describe('Author Search', () => {
               })
               .then(($lis) => {
                 cy.wrap($lis)
-                  .should('have.length', '30')
+                  .should('have.length', '20')
               })
 
         })
