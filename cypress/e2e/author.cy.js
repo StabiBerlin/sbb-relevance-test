@@ -37,6 +37,23 @@ describe('Author Search', () => {
               .contains('Yan, Lianke')
         })
     })
+	 describe(''阎连科'', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: ''阎连科'',
+                    type: 'Author'
+                }
+            })
+        })
+
+        // see #22
+        it('CJK author search should return translations', () => {
+            cy.get('.record-list')
+              .contains(''阎连科'')
+        })
+    })
 
     describe('"Corte, Justine del"', () => {
         beforeEach(() => {
