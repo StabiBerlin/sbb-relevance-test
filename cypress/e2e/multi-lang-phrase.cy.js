@@ -103,6 +103,7 @@ describe('Foreign language phrase search', () => {
         })
     })
 
+    // see #33
     describe('popular science soviet', () => {
         beforeEach(() => {
             cy.visit({
@@ -135,13 +136,55 @@ describe('Foreign language phrase search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'Boundary and the Making of Home',
-                    type: 'allFields'
+                    type: 'allFields',
+                    limit: '5'
                 }
             })
         })
 
-        it('should ...', () => {
+        // 16.01.24 Title no longer in TOP 20
+        // PPN CAJ435467670
+        // see #27 #20
+        // Parallel Title: 门禁社区边界和家的构建关系研究 see below
+        it.skip('TOP 5 should contain matching article', () => {
+            cy.get('[href*="CAJ435467670"]')
+                .should('exist')
+        })
+
+        // see #27 #20
+        // the assertion might be too strong 
+        it.skip('TOP 5 titles should contain all search phrases', () => {
             cy.get('.resultlist')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains(/(?=.*boundar.*)(?=.*mak.*)(?=.*home)/i)
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '5')
+              })
+        })
+    })
+    
+    describe('门禁社区边界和家的构建关系研究', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: '门禁社区边界和家的构建关系研究',
+                    type: 'allFields',
+                    limit: '1'
+                }
+            })
+        })
+
+        // 16.01.24 Title no longer in TOP 20
+        // PPN CAJ435467670
+        // see #27
+        // see Boundary and the Making of Home above
+        it('should find matching article as first hit', () => {
+            cy.get('[href*="CAJ435467670"]')
+                .should('exist')
         })
     })
 
@@ -151,13 +194,27 @@ describe('Foreign language phrase search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'Zivopisnaja Rossija',
-                    type: 'allFields'
+                    type: 'allFields', 
+                    limit: '5'
                 }
             })
         })
 
-        it('should ...', () => {
+        it('should contain non Latin search phrase', () => {
             cy.get('.resultlist')
+              .contains('Живописная Россия')
+        })
+
+        it('TOP 5 titles should contain search phrases', () => {
+            cy.get('.resultlist')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains('Živopisnaja Rossija')
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '5')
+              })
         })
     })
 })
