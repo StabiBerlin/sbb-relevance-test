@@ -16,6 +16,14 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
+// cypress/support/index.js
+// if you want to use the "import" keyword
+// note: `./index.d.ts` currently extends the global Cypress types and
+// does not define `registerCypressGrep` so the import path is directly
+// pointed to the `support.js` file
+import registerCypressGrep from '@cypress/grep/src/support'
+registerCypressGrep()
+
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

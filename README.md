@@ -73,11 +73,35 @@ Oder via Browser GUI modus:
 npx cypress open
 ```
 
-Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat von ausserhalb des Hausnetzes:
+Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat der `simple.cs.js` spec:
 
 ```bash
-CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run -s cypress/e2e/simple.cy.js  
+CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run --spec cypress/e2e/simple.cy.js --env grepUntagged=true   
 ```
+
+### Tagging
+
+Zur besseren Organisation der Tests via tags:
+
+- `@next` für Tests die in der Testinstanz `Vufind-6` laufen, aber noch nicht im produktivem Stabikat
+
+  ```js
+  // This works on Vufind6 but not on stabi
+  it('CJK author search should return translations', {tags: ['@next']}, () => {
+    cy.get('.record-list')
+      .contains('Yan, Lianke')
+    })
+
+  // This works on both
+  it('CJK author search should match latinized family name', () => {
+    cy.get('.record-list')
+      .contains('Yan')
+    })  
+  ```
+
+Wenn die nötigen Änderungen der `searchpsec.yaml` im Stabikat live gegangen sind, müssen die entsprechenden `@next` Tags entfernt werden.
+
+Für Tests die in beiden Instanzen (noch) nicht laufen: `.skip`
 
 ### Yaml Prüfung
 

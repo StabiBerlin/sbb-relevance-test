@@ -24,6 +24,7 @@ jobs:
         with:
           build: npm install
           config: baseUrl=https://stabikat.de/search/
+          env: grepUntagged=true
           spec: |
             cypress/e2e/spec.cy.js
             cypress/e2e/author.cy.js
