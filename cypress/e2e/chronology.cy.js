@@ -127,8 +127,8 @@ describe('Chronology', () => {
     // 608 hits total but many do not contain the search terms in the title 
     // or are about later periods all together
     // why is 130141674 shown ?
-    // 
-    describe.only('Kulturgeschichte deutsches Kaiserreich', () => {
+    // see #39
+    describe.skip('Kulturgeschichte deutsches Kaiserreich', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -155,8 +155,19 @@ describe('Chronology', () => {
             })
         })
 
-        it('should ...', () => {
+        // PPN 1612978711
+        // PPN JST069657696
+        // see #35
+        it.skip('should not match irrelevant titles', () => {
+            cy.get('[href*="1612978711"]')
+                .should('not.exist')
+            cy.get('[href*="JST069657696"]')
+                .should('not.exist')
+        })
+
+        it('should not contain Caralli in Title', () => {
             cy.get('.resultlist')
+                .should(`not.contain`, `Caralli`)
         })
     })
 
@@ -171,8 +182,15 @@ describe('Chronology', () => {
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // see #40
+        it('should contain both primary and secondary literature', () => {
+            cy.get('[href*="272952737"]')
+                .should('exist')
+            cy.get('[href*="1507865600"]')
+                .should('exist')
+            cy.get('[href*="1016493053"]')
+                .should('exist')
+
         })
     })
 
@@ -187,8 +205,36 @@ describe('Chronology', () => {
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        //  1756833699
+        // not sure if this should or should not exist
+        // see #35
+        // see #22
+        it.skip('should show relevant titles in translation', () => {
+            cy.get('[href*="1756833699"]')
+                .should('exist')
+        })
+
+        // PPN 389602841 2005
+        // PPN 430480865 1969
+        // see #35
+        it.skip('should show relevant titles in translation', () => {
+            cy.get('[href*="389602841"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="430480865"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
         })
     })
 })
