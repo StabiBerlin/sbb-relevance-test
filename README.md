@@ -129,9 +129,9 @@ For more information, see https://on.cypress.io/bad-browser-policy
 
 In diese Fällen müssen Tests in `Electron` ausgeführt werden.
 
-### NPM Installations Probleme
+### NPM Installationsprobleme
 
-Da der Proxy über `http` aufgerufen wird, muss uneter Umständen der strikte ssl modus deaktiviert werden.
+Da der Proxy über `http` aufgerufen wird, muss unter Umständen der strikte ssl modus deaktiviert werden.
 
 ```powershell
 npm set strict-ssl false
