@@ -12,8 +12,13 @@ describe('Topical Search', () => {
         })
 
         // too many articles
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // note both requested titles are translations
+        // see #22
+        it.skip('should contain relevant titles', () => {
+            cy.get('[href*="490244408"]')
+                .should('exist')
+            cy.get('[href*="595354122"]')
+                .should('exist')
         })
     })
 
@@ -23,15 +28,32 @@ describe('Topical Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'soziale arbeit theorie',
-                    type: 'allFields'
+                    type: 'Keyword',
+                    limit: '10'
                 }
             })
         })
 
-        // too many articles
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // too many articles in allFields no testable conditions
+        // keyword search shows signs of poor relevance
+        // PPN: 276627377 pl 1987 und nicht das gesuchte thema
+        it.skip('keyword search should not rank loosely related items in TOP 20', () => {
+            cy.get('[href*="276627377"]')
+                .should('not.exist')
         })
+
+        // This is a judgement call based on the allFields results, 
+        // 5 of 20 from 2020 or later seems too low
+        // This tests for publication dates from 2010-202X in TOP 10
+        it.skip('TOP10 should only contain items from 2010 or later', () => {
+            // cy.get('.resultlist-data')
+            //     .first()
+            //     .contains(/20(1|2)\d/)
+            cy.get('.resultlist-data')
+                .each(($data) => {
+                    cy.wrap($data)
+                      .contains(/20(1|2)\d/)
+                })        })
     })
 
     describe('social media analytics', () => {
@@ -46,28 +68,34 @@ describe('Topical Search', () => {
         })
 
         // too many articles
-        it('should ...', () => {
+        // nothing obviously wrong with list imv
+        // many eletronic ressources to be expected for topic
+        // needs clearer criteria
+        it.skip('should ...', () => {
             cy.get('.resultlist')
         })
     })
 
+    // see above unclear success criteria
     describe('othering', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'othering',
-                    type: 'allFields'
+                    type: 'allFields',
+                    limit: 5
                 }
             })
         })
 
-        it('should ...', () => {
+        it('TOP5 should contain topic in title', () => {
             cy.get('.resultlist')
+              .contains('othering', {matchCase: false})
         })
     })
 
-    describe('japan popular culture anime', () => {
+    describe.only('japan popular culture anime', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -78,12 +106,18 @@ describe('Topical Search', () => {
             })
         })
 
-        it('should ...', () => {
+        // the tourism hits all contain MANGA or ANIME as subject
+        // see #42
+        it.skip('should ...', () => {
             cy.get('.resultlist')
         })
     })
 
-    describe('Osmanisches Reich im Ersten Weltkrieg', () => {
+    // info:doi:10.7788%252Fsaeculum.2001.52.1.55 Crossref too high
+    // OLC2136322486 
+    // OLC1618743244
+    // wait for grouping? 3x same hit in list
+    describe.only('Osmanisches Reich im Ersten Weltkrieg', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
