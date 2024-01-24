@@ -14,6 +14,8 @@ describe('Topical Search', () => {
         // too many articles
         // note both requested titles are translations
         // see #22
+        // see #43
+
         it.skip('should contain relevant titles', () => {
             cy.get('[href*="490244408"]')
                 .should('exist')
@@ -37,6 +39,8 @@ describe('Topical Search', () => {
         // too many articles in allFields no testable conditions
         // keyword search shows signs of poor relevance
         // PPN: 276627377 pl 1987 und nicht das gesuchte thema
+        // see #43
+
         it.skip('keyword search should not rank loosely related items in TOP 20', () => {
             cy.get('[href*="276627377"]')
                 .should('not.exist')
@@ -45,6 +49,8 @@ describe('Topical Search', () => {
         // This is a judgement call based on the allFields results, 
         // 5 of 20 from 2020 or later seems too low
         // This tests for publication dates from 2010-202X in TOP 10
+        // see #43
+
         it.skip('TOP10 should only contain items from 2010 or later', () => {
             // cy.get('.resultlist-data')
             //     .first()
@@ -52,8 +58,9 @@ describe('Topical Search', () => {
             cy.get('.resultlist-data')
                 .each(($data) => {
                     cy.wrap($data)
-                      .contains(/20(1|2)\d/)
-                })        })
+                        .contains(/20(1|2)\d/)
+                })
+        })
     })
 
     describe('social media analytics', () => {
@@ -71,6 +78,8 @@ describe('Topical Search', () => {
         // nothing obviously wrong with list imv
         // many eletronic ressources to be expected for topic
         // needs clearer criteria
+        // see #43
+
         it.skip('should ...', () => {
             cy.get('.resultlist')
         })
@@ -91,11 +100,11 @@ describe('Topical Search', () => {
 
         it('TOP5 should contain topic in title', () => {
             cy.get('.resultlist')
-              .contains('othering', {matchCase: false})
+                .contains('othering', { matchCase: false })
         })
     })
 
-    describe.only('japan popular culture anime', () => {
+    describe('japan popular culture anime', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -113,11 +122,9 @@ describe('Topical Search', () => {
         })
     })
 
-    // info:doi:10.7788%252Fsaeculum.2001.52.1.55 Crossref too high
-    // OLC2136322486 
-    // OLC1618743244
+
     // wait for grouping? 3x same hit in list
-    describe.only('Osmanisches Reich im Ersten Weltkrieg', () => {
+    describe('Osmanisches Reich im Ersten Weltkrieg', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -128,23 +135,80 @@ describe('Topical Search', () => {
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // info:doi:10.7788%252Fsaeculum.2001.52.1.55 Crossref too high
+        // OLC2136322486 
+        // OLC1618743244
+        // see #43
+        it.skip('should show identical items in sequence', () => {
+
+            cy.get('[href*="info:doi:10.7788%252Fsaeculum.2001.52.1.55"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="OLC2136322486"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+                            cy.get('[href*="OLC1618743244"]')
+                                .parents('[id^="result"]')
+                                .find('.record-number')
+                                .invoke('text')
+                                .then(($num3) => {
+                                    const num3 = parseInt($num3)
+
+                                    expect(num2).to.eq(num3 - 1)
+                                })
+
+                            expect(num1).to.eq(num2 - 1)
+                        })
+                })
+        })
+
+        // once identical items are grouped this test might fail
+        it('should show duplicate items', () => {
+            cy.get('[href*="OLC2136322486"]')
+                .should('exist')
+            cy.get('[href*="OLC1618743244"]')
+                .should('exist')
+            cy.get('[href*="info:doi:10.7788%252Fsaeculum.2001.52.1.55"]')
+                .should('exist')
         })
     })
+
+
     describe('esperanto ddr', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'esperanto ddr',
-                    type: 'allFields'
+                    type: 'allFields',
+                    limit: '10'
                 }
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // relevance looks good
+        it('should contain DDR and esperanto in title', () => {
+            // this selects the expanded title, because it is invisible we use force
+            cy.get('.detailview', { force: true })
+                // Force display of the full title line for testing
+                .invoke('attr', 'style', 'display: inline')
+                .each(($el) => {
+                    cy.wrap($el)
+                        .contains('ddr', { matchCase: false })
+                })
+            cy.get('.detailview')
+                .each(($el) => {
+                    cy.wrap($el)
+                        .contains('esperanto', { matchCase: false })
+                })
         })
     })
     describe('KI gesichtserkennung', () => {
@@ -153,32 +217,36 @@ describe('Topical Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'KI gesichtserkennung',
-                    type: 'allFields'
+                    type: 'Keyword',
+                    limit: '10'
                 }
             })
         })
 
-        it('should ...', () => {
+        // why is there no date for DOAJ041084004 ??
+        // list looks ok 
+        // see #44 
+        it('TOP 10 in keyword search should contain both matching keywords', () => {
+
             cy.get('.resultlist')
+                // Display details
+                .each(($el) => {
+                    cy.wrap($el)
+                        .click()
+                })
+                cy.get('table')
+                  .should('have.length', 10)
+                  .each(($el) => {
+                    cy.wrap($el)
+                      .contains(/K(ünstliche )?I(ntelligenz)?/, { matchCase: false })
+                    cy.get($el)  
+                      .contains('Gesichtserkennung', { matchCase: false })
+                })
+
         })
     })
-    describe('koptische Stoffe', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'koptische Stoffe',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        it('should ...', () => {
-            cy.get('.resultlist')
-        })
-    })
-
-    describe('Todessymbolik', () => {
+    
+    describe.only('Todessymbolik', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
