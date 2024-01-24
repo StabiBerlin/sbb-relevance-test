@@ -15,7 +15,7 @@ describe('Author Search', () => {
         it('first hit should be by the author', {tags: ['@next']}, () => {
             cy.get('#result0')
                 .find('.resultlist-data')
-                .contains('Glaser, Karin')
+                .contains(/^(?=.*Karin)(?=.*Glaser)$/)
 				
         })
     })
