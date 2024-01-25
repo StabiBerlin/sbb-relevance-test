@@ -237,4 +237,101 @@ describe('Chronology', () => {
                 })
         })
     })
+
+    describe('koptische Stoffe', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'koptische Stoffe',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        // TOP 4 hits identical Title but not duplicate
+        // unclear why chronology not the effective sorting criteria
+        // but not necessarily a problem
+        // PPN 447104306 (1966)
+        // PPN 1117375048 (1967)
+        // PPN 1083642081 (1986)
+        // PPN 403203899 (1959)
+        it.skip('should rank identical titles according to chronology', () => {
+            cy.get('[href*="1083642081"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="1117375048"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+                            cy.get('[href*="447104306"]')
+                                .parents('[id^="result"]')
+                                .find('.record-number')
+                                .invoke('text')
+                                .then(($num3) => {
+                                    const num3 = parseInt($num3)
+
+                                    cy.get('[href*="403203899"]')
+                                        .parents('[id^="result"]')
+                                        .find('.record-number')
+                                        .invoke('text')
+                                        .then(($num4) => {
+                                            const num4 = parseInt($num4)
+
+                                            expect(num3).to.be.lessThan(num4)
+                                        })
+
+                                    expect(num2).to.be.lessThan(num3)
+                                })
+
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
+        })
+    })
+
+    describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Sadeleer, Environmental principles. From political slogans to legal rules',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        // mix of reviews and different media types
+        // see #23
+        // old behaviour no longer reproducible, 
+        // TOP1 is book (newest) followed by ebook 9same date) and earlier article with identical title
+        // 2020 book PPN 1740404548
+        // 2004 article PPN OLC1736991698
+        it('newer book shuold be before older article', () => {
+            cy.get('[href*="1740404548"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="OLC1736991698"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
+        })
+    })
+
 })

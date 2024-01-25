@@ -106,4 +106,24 @@ describe('Review after reviewed', () => {
         })
     })
 
+    describe('Selam Berlin Yade Kara', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Selam Berlin Yade Kara',
+                    type: 'allFields'
+                }
+            })
+        })
+        // this beginns to conflict with chronology requirement
+        // see #26
+        it.skip('TOP1 should be the novel (primary work)', () => {
+            cy.get('#result0')
+              .find('.save-record')
+              .invoke('attr', 'data-id')
+              .should('equal','364739789')
+        })
+    })
+
 })

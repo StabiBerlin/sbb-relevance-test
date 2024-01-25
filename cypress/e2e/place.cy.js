@@ -21,15 +21,15 @@ describe('Publishing Place', () => {
         // 
         // see https://docs.cypress.io/guides/core-concepts/conditional-testing
         // see #30
+        
         it.skip('Top 5 should match the queried topic', () => {
-            cy.get('.resultlist')
-              .each(($el, index, $lis) => {
+            // this selects the expanded title, because it is invisible we use force
+            cy.get('.detailview', {force: true})
+            // Force display the full title line for testing
+              .invoke('attr','style', 'display: inline')
+              .each(($el) => {
                 cy.wrap($el)
-                  .contains(/(K\.F\.D|Salomon|Be\.\.\.|Berlin|1908)/)
-              })
-              .then(($lis) => {
-                cy.wrap($lis)
-                  .should('have.length', '5')
+                 .contains(/(K\.F\.D|Salomon|Berlin|1908)/, {matchCase: false})
               })
         })
 
