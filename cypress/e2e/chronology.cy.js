@@ -297,4 +297,41 @@ describe('Chronology', () => {
         })
     })
 
+    describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Sadeleer, Environmental principles. From political slogans to legal rules',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        // mix of reviews and different media types
+        // see #23
+        // old behaviour no longer reproducible, 
+        // TOP1 is book (newest) followed by ebook 9same date) and earlier article with identical title
+        // 2020 book PPN 1740404548
+        // 2004 article PPN OLC1736991698
+        it('newer book shuold be before older article', () => {
+            cy.get('[href*="1740404548"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="OLC1736991698"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
+        })
+    })
+
 })

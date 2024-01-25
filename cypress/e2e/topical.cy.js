@@ -199,8 +199,9 @@ describe('Topical Search', () => {
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        it('should match "Aff. bipolare Psychose…"', () => {
+            cy.get('[href*="OLC2108288694"]')
+              .should('exist')
         })
     })
 
@@ -215,56 +216,12 @@ describe('Topical Search', () => {
             })
         })
 
-        it('should ...', () => {
-            cy.get('.resultlist')
+        // I don't understand the reasoning behind the requirement
+        it('should find at least one match', () => {
+            cy.get('[id*="result"]')
+              .should('have.length.gte', 1)
         })
     })
 
-    describe('The Law of nature in the thought of Hugo grotius', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'The Law of nature in the thought of Hugo grotius',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        it('should ...', () => {
-            cy.get('.resultlist')
-        })
-    })
-
-    describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'Sadeleer, Environmental principles. From political slogans to legal rules',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        // too many articles? 
-        it('should ...', () => {
-            cy.get('.resultlist')
-        })
-    })
-
-    describe('Selam Berlin Yade Kara', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'Selam Berlin Yade Kara',
-                    type: 'allFields'
-                }
-            })
-        })
-        it('should ...', () => {
-            cy.get('.resultlist')
-        })
-    })
+    
 })
