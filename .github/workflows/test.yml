@@ -25,16 +25,6 @@ jobs:
           build: npm install
           config: baseUrl=https://stabikat.de/search/
           env: grepUntagged=true
-          spec: |
-            cypress/e2e/spec.cy.js
-            cypress/e2e/author.cy.js
-            cypress/e2e/reviews.cy.js
-            cypress/e2e/nested.cy.js
-            cypress/e2e/multi-lang-phrase.cy.js
-            cypress/e2e/place.cy.js
-            cypress/e2e/chronology.cy.js
-            cypress/e2e/topical.cy.js
-            cypress/e2e/duplicates.cy.js
         #   browser: firefox
       # Lint Yaml
       - name: Yaml Lint

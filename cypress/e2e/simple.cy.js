@@ -1,7 +1,6 @@
-// Results?lookfor=dad&type=AllFields
+// test different connection options, sort of a self-test
 
-
-describe('simple GUI spec', () => {
+describe.skip('connection to GUI result list', () => {
     before(() => {
         cy.visit({
             url: '/Results',
@@ -18,7 +17,7 @@ describe('simple GUI spec', () => {
     })
 
     // This will be a 403 from world should connect from internal network
-    it('should also pass via http request', () => {
+    it('connect to vufind result object', () => {
         cy.request({
             url: '/Results',
             qs: {
@@ -28,5 +27,17 @@ describe('simple GUI spec', () => {
             expect(resp.status).to.eq(200)
         })
 
+    })
+
+    it('connects to index', () => {
+        cy.request({
+            url: 'https://findex.gbv.de/index/11/select',
+            qs: {
+                q: 'dad'
+            }
+        }).then((resp) => {
+            expect(resp.status).to.eq(200)
+        })
+       
     })
 })
