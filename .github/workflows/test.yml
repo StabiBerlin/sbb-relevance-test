@@ -34,6 +34,7 @@ jobs:
             cypress/e2e/place.cy.js
             cypress/e2e/chronology.cy.js
             cypress/e2e/topical.cy.js
+            cypress/e2e/duplicates.cy.js
         #   browser: firefox
       # Lint Yaml
       - name: Yaml Lint

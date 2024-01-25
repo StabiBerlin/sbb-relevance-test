@@ -123,65 +123,6 @@ describe('Topical Search', () => {
     })
 
 
-    // wait for grouping? 3x same hit in list
-    describe('Osmanisches Reich im Ersten Weltkrieg', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'Osmanisches Reich im Ersten Weltkrieg',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        // info:doi:10.7788%252Fsaeculum.2001.52.1.55 Crossref too high
-        // OLC2136322486 
-        // OLC1618743244
-        // see #43
-        it.skip('should show identical items in sequence', () => {
-
-            cy.get('[href*="info:doi:10.7788%252Fsaeculum.2001.52.1.55"]')
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
-
-                    cy.get('[href*="OLC2136322486"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
-
-                            cy.get('[href*="OLC1618743244"]')
-                                .parents('[id^="result"]')
-                                .find('.record-number')
-                                .invoke('text')
-                                .then(($num3) => {
-                                    const num3 = parseInt($num3)
-
-                                    expect(num2).to.eq(num3 - 1)
-                                })
-
-                            expect(num1).to.eq(num2 - 1)
-                        })
-                })
-        })
-
-        // once identical items are grouped this test might fail
-        it('should show duplicate items', () => {
-            cy.get('[href*="OLC2136322486"]')
-                .should('exist')
-            cy.get('[href*="OLC1618743244"]')
-                .should('exist')
-            cy.get('[href*="info:doi:10.7788%252Fsaeculum.2001.52.1.55"]')
-                .should('exist')
-        })
-    })
-
-
     describe('esperanto ddr', () => {
         beforeEach(() => {
             cy.visit({
@@ -211,6 +152,7 @@ describe('Topical Search', () => {
                 })
         })
     })
+
     describe('KI gesichtserkennung', () => {
         beforeEach(() => {
             cy.visit({
@@ -246,22 +188,6 @@ describe('Topical Search', () => {
         })
     })
     
-    describe.only('Todessymbolik', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'Todessymbolik',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        it('should ...', () => {
-            cy.get('.resultlist')
-        })
-    })
-
     describe('affektive störung', () => {
         beforeEach(() => {
             cy.visit({
