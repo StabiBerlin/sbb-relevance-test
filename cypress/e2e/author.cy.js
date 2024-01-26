@@ -97,7 +97,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains('Scheidt, Samuel')
+                  ..contains(/^(?=.*Samuel)(?=.*Scheidt)$/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
@@ -126,7 +126,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains('Schiller, Friedrich')
+                  .contains(/^(?=.*Friedrich)(?=.*Schiller)$/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
@@ -160,3 +160,32 @@ describe('Author Search', () => {
         })
     })
 })
+describe('Elfriede Jelinek', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Elfriede Jelinek',
+                    type: 'Author' 
+                    
+                }
+            })
+        })
+
+        
+        // Top 20 in author search should all be by author
+        // see #28
+        it('Top 20 should all be by author', {tags: ['@next']}, () => {
+            cy.get('.resultlist-data')
+              .find('[href*=Author]')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains(/^(?=.*Elfriede)(?=.*Jelinek)$/)
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '20')
+              })
+
+        })
+    })
