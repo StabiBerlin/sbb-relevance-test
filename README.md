@@ -34,7 +34,7 @@ npm i
 
 ```powershell
 $env:HTTP_PROXY = "http://proxy.spk-berlin.de:3128"
-$env:HTTPS_PROXY = "HTTPS_PROXY=http://proxy.spk-berlin.de:3128"
+$env:HTTPS_PROXY = "http://proxy.spk-berlin.de:3128"
 $env:NO_PROXY = "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
 ```
 
