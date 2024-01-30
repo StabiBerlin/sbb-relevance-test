@@ -97,7 +97,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  ..contains(/^(?=.*Samuel)(?=.*Scheidt)$/)
+                  .contains(/^(?=.*Samuel)(?=.*Scheidt)$/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
