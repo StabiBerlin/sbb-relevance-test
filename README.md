@@ -1,6 +1,6 @@
 # sbb-relevance-test
 
-Relevanztests für die Discovery Suche im K10+. 
+Relevanztests für die Discovery Suche der SBB.
 
 See [Ziele.md](notes/Ziele.md)
 
@@ -22,62 +22,55 @@ v18.16.0
 
 ## Installation
 
-Dieses Repo Klonen, und dann denn geklonten Ordner in Powershell öffnen:
+Dieses Repo klonen, und dann denn geklonten Ordner in der Kommandozeile öffnen:
 
 ```powershell
 npm i
 ```
 
-### Konfiguration
+### Installation (SBB)
 
-Um direkt mit dem [Findex](https://github.com/gbv/findex-config) zu kommunizieren müssen die [Proxy Einstellungen](https://docs.cypress.io/guides/references/proxy-configuration) der Cypress Umgebung manuell angepasst werden. 
+1. Für die Installation via NPM müssen die [Proxy Einstellungen](https://docs.cypress.io/guides/references/proxy-configuration) der lokalen Umgebung manuell angepasst werden.
 
 ```powershell
 $env:HTTP_PROXY = "http://proxy.spk-berlin.de:3128"
-$env:HTTPS_PROXY = "HTTPS_PROXY=http://proxy-dev.spk-berlin.de:3128"
+$env:HTTPS_PROXY = "http://proxy.spk-berlin.de:3128"
 $env:NO_PROXY = "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
 ```
 
-Permanente Einrichtung des `http_proxy`:
+2. Strikten SSL modus deaktivieren (einmalig)
+
+Da der Proxy über `http` aufgerufen wird, muss unter Umständen der strikte ssl modus deaktiviert werden.
+
 ```powershell
-setx HTTP_PROXY http://proxy.spk-berlin.de:3128
+npm set strict-ssl false
 ```
 
-Zugangsdaten für den `vf6_user` müssen in der  `cypress.env.json` eingetragen werden:
+3. Installation via NPM
 
-```json
-{
-    "vf6_user": {
-        "vf6_name": "root",
-        "vf6_pw": ""
-    },
-    "NO_PROXY": "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de",
-    "HTTP_PROXY": "http://proxy.spk-berlin.de:3128"
-}
+Dieses Repo klonen, und dann die Kommandozeile in dem geklonten Ordner öffnen:
+
+```powershell
+npm i
 ```
 
 ## Benutzung
 
-Zum ausführen der Tests:
+Zum Ausführen der Tests den geklonten Ordner in der Kommandozeile öffnen:
 
-Entweder in der Kommandozeile:
+Ohne GUI:
 
 ```powershell
 npx cypress run
 ```
 
-Oder via Browser GUI modus:
-
+Mit GUI:
 
 ```powershell
 npx cypress open
 ```
 
-Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat der `simple.cs.js` spec:
-
-```bash
-CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run --spec cypress/e2e/simple.cy.js --env grepUntagged=true   
-```
+Per Default laufen die Tests gegen den [Vufind-6 Server](http://b-dev20220203-vufind-6/). Die `searchspecs.yml` befindet sich im Verzeichnis: `/var/www/vufind/local/config/vufind`
 
 ### Tagging
 
@@ -103,7 +96,19 @@ Wenn die nötigen Änderungen der `searchpsec.yaml` im Stabikat live gegangen si
 
 Für Tests die in beiden Instanzen (noch) nicht laufen: `.skip`
 
-### Yaml Prüfung
+Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat der `simple.cs.js` spec:
+
+- Ändere `BASE_URL` zum [Stabikat](https://stabikat.de)
+- Spezifiziere welche Testdatei via `--spec`, und
+- nur Tests ohne tag, via `--env`
+
+```bash
+CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run --spec cypress/e2e/simple.cy.js --env grepUntagged=true   
+```
+
+Für weitere Optionen siehe [Cypress command-line](https://docs.cypress.io/guides/guides/command-line)
+
+## Yaml Prüfung
 
 Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
 
@@ -111,11 +116,13 @@ Um die yaml Dateien im `vufind/` Ordner auf Syntaxfehler zu überprüfen:
 npm run lint
 ```
 
+Dieser Test wird auf GitHub automatisch ausgeführt.
+
 ## Troubleshooting
 
 ### Cypress Browser Warning
 
-Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers. 
+Sollte ein eine Browser spezifische Warnung erscheinen, verhindern Windows Systemeinstellungen die automatisierte Nutzung des gewählten Browsers.
 
 ```powershell
 Cypress detected policy settings on your computer that may cause issues.
@@ -129,10 +136,14 @@ For more information, see https://on.cypress.io/bad-browser-policy
 
 In diese Fällen müssen Tests in `Electron` ausgeführt werden.
 
-### NPM Installationsprobleme
+### Findex Availability
 
-Da der Proxy über `http` aufgerufen wird, muss unter Umständen der strikte ssl modus deaktiviert werden.
+Die Proxy Einstellungen für die direkte Kommunikation mit dem [Findex](https://github.com/gbv/findex-config) können in einer `cypress.env.json` hinterlegt werden.
 
-```powershell
-npm set strict-ssl false
+```json
+{
+    "NO_PROXY": "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de",
+    "HTTP_PROXY": "http://proxy.spk-berlin.de:3128",
+    "HTTPS_PROXY": "http://proxy.spk-berlin.de:3128"
+}
 ```

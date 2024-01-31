@@ -66,7 +66,7 @@ describe('duplicate entries', () => {
                 qs: {
                     lookfor: 'Todessymbolik',
                     type: 'allFields',
-                    limit: '30'
+                    limit: '40'
                 }
             })
         })
