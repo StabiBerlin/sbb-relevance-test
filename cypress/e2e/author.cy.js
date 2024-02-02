@@ -15,7 +15,7 @@ describe('Author Search', () => {
         it('first hit should be by the author', {tags: ['@next']}, () => {
             cy.get('#result0')
                 .find('.resultlist-data')
-                .contains(/^(?=.*Karin)(?=.*Glaser)$/)
+                .contains(/(?=.*Karin)(?=.*Glaser)/)
 				
         })
     })
@@ -97,7 +97,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/^(?=.*Samuel)(?=.*Scheidt)$/)
+                  .contains(/(?=.*Samuel)(?=.*Scheidt)/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
@@ -126,7 +126,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/^(?=.*Friedrich)(?=.*Schiller)$/)
+                  .contains(/(?=.*Friedrich)(?=.*Schiller)/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
@@ -180,7 +180,7 @@ describe('Elfriede Jelinek', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/^(?=.*Elfriede)(?=.*Jelinek)$/)
+                  .contains(/(?=.*Elfriede)(?=.*Jelinek)/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
