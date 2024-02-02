@@ -268,22 +268,22 @@ Author:
   
  #Verbesserte Phrasensuche, eWW
 QueryFields:
+  author:
+    - [onephrase, 350]
+    - [author_initial, 100]
+  author2:
+    - [onephrase, 100]
+    - [author_initial, ~]
+  author_additional:
+    - [onephrase, 100]
+    - [author_initial, ~]
+ExactSettings:
+  QueryFields:
     author:
       - [onephrase, 350]
-      - [author_initial, 100]
     author2:
       - [onephrase, 100]
-      - [author_initial, ~]
     author_additional:
-      - [onephrase, 100]
-      - [author_initial, ~]
-ExactSettings:
-    QueryFields:
-      author:
-      - [onephrase, 350]
-      author2:
-      - [onephrase, 100]
-      author_additional:
       - [onephrase, 100]
 
     
