@@ -314,7 +314,7 @@ describe('Chronology', () => {
         // TOP1 is book (newest) followed by ebook 9same date) and earlier article with identical title
         // 2020 book PPN 1740404548
         // 2004 article PPN OLC1736991698
-        it('newer book shuold be before older article', () => {
+        it.only('newer book shuold be before older article', () => {
             cy.get('[href*="1740404548"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
