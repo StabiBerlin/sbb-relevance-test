@@ -450,6 +450,7 @@ AllFields:
     - journal^500
     - is_hierarchy_title^500
     - hierarchy_top_title^500
+  # DismaxHandler: edismax  
   DismaxParams:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
@@ -462,7 +463,12 @@ AllFields:
     - [bq, genre_facet:"Rezension"^0.1]
     - [bq, genre_facet:"book-review"^0.1]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
-    - [bf=ord(publishDate)^500]          
+    # - [bf=ord(publishDateSort)^500] 
+# Hebis inspired
+    - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
+# Docs inspired
+    # - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
+# Old Approach
     # - [bq, publishDateSort:2023^280]
     # - [bq, publishDateSort:2022^260]
     # - [bq, publishDateSort:2021^240]
@@ -479,7 +485,7 @@ AllFields:
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
 #    - [tie, 0.1]    
-  DismaxHandler: edismax
+  # DismaxHandler: edismax
 
 
 
