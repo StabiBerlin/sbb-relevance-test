@@ -16,7 +16,7 @@ describe('Chronology', () => {
         // DP: sometimes the date in resultlist-data conflicts with the exact date in details view
         // which can impact the percieved sorting
         // see #35
-        it.skip('Top 1 should be published after 2020', () => {
+        it('Top 1 should be published after 2020', () => {
             cy.get('.resultlist-data')
                 .first()
                 .contains(/202\d/)
@@ -75,7 +75,7 @@ describe('Chronology', () => {
         // 1995 ed PPN 182859061
         // 2004 ed PPN 366403265
         // see #35
-        it.skip('Later editions should be ranked higher', () => {
+        it('Later editions should be ranked higher', () => {
             cy.get('[href*="537598197"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -118,7 +118,7 @@ describe('Chronology', () => {
             })
         })
 
-        it.skip('should ...', () => {
+        it('should ...', () => {
             cy.get('.resultlist')
         })
     })
@@ -128,7 +128,7 @@ describe('Chronology', () => {
     // or are about later periods all together
     // why is 130141674 shown ?
     // see #39
-    describe.skip('Kulturgeschichte deutsches Kaiserreich', () => {
+    describe('Kulturgeschichte deutsches Kaiserreich', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -158,7 +158,7 @@ describe('Chronology', () => {
         // PPN 1612978711
         // PPN JST069657696
         // see #35
-        it.skip('should not match irrelevant titles', () => {
+        it('should not match irrelevant titles', () => {
             cy.get('[href*="1612978711"]')
                 .should('not.exist')
             cy.get('[href*="JST069657696"]')
@@ -209,7 +209,7 @@ describe('Chronology', () => {
         // not sure if this should or should not exist
         // see #35
         // see #22
-        it.skip('should show relevant titles in translation', () => {
+        it('should show relevant titles in translation', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
         })
@@ -217,7 +217,7 @@ describe('Chronology', () => {
         // PPN 389602841 2005
         // PPN 430480865 1969
         // see #35
-        it.skip('should show relevant titles in translation', () => {
+        it('should show relevant titles in translation', () => {
             cy.get('[href*="389602841"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -256,7 +256,7 @@ describe('Chronology', () => {
         // PPN 1117375048 (1967)
         // PPN 1083642081 (1986)
         // PPN 403203899 (1959)
-        it.skip('should rank identical titles according to chronology', () => {
+        it('should rank identical titles according to chronology', () => {
             cy.get('[href*="1083642081"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
