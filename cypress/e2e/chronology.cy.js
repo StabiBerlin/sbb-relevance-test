@@ -1,6 +1,6 @@
 describe('Chronology', () => {
     // see #11  
-    describe('Andreas Gryphius', () => {
+    describe.only('Andreas Gryphius', () => {
         // DP: add sort: 'year' to qs for sorted results
         beforeEach(() => {
             cy.visit({
@@ -297,7 +297,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
+    describe.only('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -314,7 +314,7 @@ describe('Chronology', () => {
         // TOP1 is book (newest) followed by ebook 9same date) and earlier article with identical title
         // 2020 book PPN 1740404548
         // 2004 article PPN OLC1736991698
-        it.only('newer book shuold be before older article', () => {
+        it('newer book shuold be before older article', () => {
             cy.get('[href*="1740404548"]')
                 .parents('[id^="result"]')
                 .find('.record-number')

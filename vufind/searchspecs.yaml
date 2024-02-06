@@ -418,50 +418,52 @@ Series:
 
 AllFields:
   DismaxFields:
-    # - title_short^750
-    # - title_full_unstemmed^600
+    - title_short^200
+    - title_os_txtP_m^100
+    # - title_full_unstemmed^500
     # - title_full^400
-    - title^500
+    - title^100
     # - title_alt^200
     # - title_new^100
-    - series^50
-    - series^100
+    # - series^150
 #   - series2^30
-    - author^300
+    - author^200
+    - author_os_txtP_mv^200
 #   - authorswithroles_txt_mv^300    
-    - contents^10
-    - topic_unstemmed^550
-    - topic^500
-    - geographic^300
-    - class^240
-    - bklname^250
-    - genre^300
-    - allfields_unstemmed^10
-    - fulltext_unstemmed^10
-    - allfields
-    - fulltext
-    - description
-    - isbn
-    - issn
-    - long_lat_display
-    - allfieldsGer
-    - id^50
-    - hierarchy_top_id
-    - journal^500
-    - is_hierarchy_title^500
-    - hierarchy_top_title^500
+    # - contents^10
+    - topic_title^50
+    # - topic_unstemmed^550
+    # - topic^500
+    # - geographic^300
+    # - class^240
+    # - bklname^250
+    # - genre^300
+    # - allfields_unstemmed^10
+    # - fulltext_unstemmed^10
+    # - allfields
+    # - fulltext
+    # - description
+    # - isbn
+    # - issn
+    # - long_lat_display
+    # - allfieldsGer
+    # - id^50
+    # - hierarchy_top_id
+    # - journal^500
+    # - is_hierarchy_title^500
+    # - hierarchy_top_title^500
   # DismaxHandler: edismax  
   DismaxParams:
-    - [bq, format:eJournal^237]
-    - [bq, format:Journal^284]
-    - [bq, format:eBook^255]
-    - [bq, format:Book^500]
-    - [bq, format:Article^620]
-    - [bq, format:"electronic+Article"^620]
-    - [bq, format_facet:"Serienband"^0.1]
-    - [bq, format_facet:"Zeitschriften"^500]
-    - [bq, genre_facet:"Rezension"^0.1]
-    - [bq, genre_facet:"book-review"^0.1]
+    # - [bq, format:eJournal^237]
+    # - [bq, format:Journal^284]
+    # - [bq, format:eBook^255]
+    # - [bq, format:Book^500]
+    # - [bq, format:Article^620]
+    # - [bq, format:"electronic+Article"^620]
+    # - [bq, format_facet:"Serienband"^0.1]
+    # - [bq, format_facet:"Zeitschriften"^500]
+    # - [bq, genre_facet:"Rezension"^0.1]
+    # - [bq, genre_facet:"book-review"^0.1]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
     # - [bf=ord(publishDateSort)^500] 
 # Hebis inspired
