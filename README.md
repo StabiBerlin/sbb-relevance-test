@@ -35,7 +35,7 @@ npm i
 ```powershell
 $env:HTTP_PROXY = "http://proxy.spk-berlin.de:3128"
 $env:HTTPS_PROXY = "http://proxy.spk-berlin.de:3128"
-$env:NO_PROXY = "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
+$env:NO_PROXY = "stabikat-ranking2, b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
 ```
 
 2. Strikten SSL modus deaktivieren (einmalig)
@@ -104,6 +104,10 @@ Für die Reproduktion der CI Testläufe gegen den produktiven Stabikat der `simp
 
 ```bash
 CYPRESS_BASE_URL=https://stabikat.de/search/ npx cypress run --spec cypress/e2e/simple.cy.js --env grepUntagged=true   
+```
+
+```powershell
+npx cypress open --config baseUrl=https://stabikat.de/search/ --env grepUntagged=true 
 ```
 
 Für weitere Optionen siehe [Cypress command-line](https://docs.cypress.io/guides/guides/command-line)
