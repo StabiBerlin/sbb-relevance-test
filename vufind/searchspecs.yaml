@@ -418,12 +418,12 @@ Series:
 
 AllFields:
   DismaxFields:
-    - title_short^750
-    - title_full_unstemmed^600
-    - title_full^400
+    # - title_short^750
+    # - title_full_unstemmed^600
+    # - title_full^400
     - title^500
-    - title_alt^200
-    - title_new^100
+    # - title_alt^200
+    # - title_new^100
     - series^50
     - series^100
 #   - series2^30
