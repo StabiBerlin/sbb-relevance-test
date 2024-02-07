@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/duncdrum/sbb-relevance-test.git"
+    "url": "git+https://github.com/StaatsbibliothekBerlin/sbb-relevance-test.git"
   },
   "keywords": [
     "sbb",
@@ -19,9 +19,9 @@
   "author": "SBB",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/duncdrum/sbb-relevance-test/issues"
+    "url": "https://github.com/StaatsbibliothekBerlin/sbb-relevance-test/issues"
   },
-  "homepage": "https://github.com/duncdrum/sbb-relevance-test#readme",
+  "homepage": "https://github.com/StaatsbibliothekBerlin/sbb-relevance-test#readme",
   "devDependencies": {
     "@cypress/grep": "^4.0.1",
     "cypress": "^13.6.3",

@@ -33,9 +33,19 @@ npm i
 1. Für die Installation via NPM müssen die [Proxy Einstellungen](https://docs.cypress.io/guides/references/proxy-configuration) der lokalen Umgebung manuell angepasst werden.
 
 ```powershell
-$env:HTTP_PROXY = "http://proxy.spk-berlin.de:3128"
-$env:HTTPS_PROXY = "http://proxy.spk-berlin.de:3128"
-$env:NO_PROXY = "stabikat-ranking2, b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de"
+$env:HTTP_PROXY = "http://your.proxy.here:3128"
+$env:HTTPS_PROXY = "https://your.proxy.here:3218"
+$env:NO_PROXY = "localhost, 127.0.0.1, 10.0.0.0/8, …"
+```
+
+Die Proxy Einstellungen für die direkte Kommunikation mit dem [Findex](https://github.com/gbv/findex-config) können in einer `cypress.env.json` hinterlegt werden.
+
+```json
+{
+    "NO_PROXY": "localhost, 127.0.0.1, 10.0.0.0/8, …",
+    "HTTP_PROXY": "http://your.proxy.here:3128",
+    "HTTPS_PROXY": "https://your.proxy.here:3218"
+}
 ```
 
 2. Strikten SSL modus deaktivieren (einmalig)
@@ -142,12 +152,4 @@ In diese Fällen müssen Tests in `Electron` ausgeführt werden.
 
 ### Findex Availability
 
-Die Proxy Einstellungen für die direkte Kommunikation mit dem [Findex](https://github.com/gbv/findex-config) können in einer `cypress.env.json` hinterlegt werden.
-
-```json
-{
-    "NO_PROXY": "b-dev20220203-vufind-6, localhost, 127.0.0.1, 10.0.0.0/8, 172.16.200.0/24, 194.94.132.0/22, .sbb.spk-berlin.de, .staatsbibliothek-berlin.de, .dev.sbb.berlin, smb.museum, .pk.de",
-    "HTTP_PROXY": "http://proxy.spk-berlin.de:3128",
-    "HTTPS_PROXY": "http://proxy.spk-berlin.de:3128"
-}
-```
+see proxy above
