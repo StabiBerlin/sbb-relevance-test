@@ -465,9 +465,9 @@ AllFields:
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
     # - [bf=ord(publishDateSort)^500] 
 # Hebis inspired
-  # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
+    # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
 # Docs inspired
-    # - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
+     - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
 # Old Approach
     # - [bq, publishDateSort:2023^280]
     # - [bq, publishDateSort:2022^260]
@@ -480,7 +480,7 @@ AllFields:
     # - [bq, publishDateSort:2015^140]
     # - [bq, publishDateSort:2014^130]
     # - [bq, publishDateSort:2013^120]
-    - [bq, publishDateSort:202*^220]    
+    # - [bq, publishDateSort:202*^220]    
    
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
