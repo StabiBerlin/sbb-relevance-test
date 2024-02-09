@@ -418,12 +418,12 @@ Series:
 
 AllFields:
   DismaxFields:
-    - title_short^750
-    - title_full_unstemmed^600
-    - title_full^400
-    - title^500
-    - title_alt^200
-    - title_new^100
+    - title_short
+    - title_full_unstemmed
+    - title_full
+    - title
+    - title_alt
+    - title_new
     - series^50
     - series^100
 #   - series2^30
@@ -450,6 +450,7 @@ AllFields:
     - journal^500
     - is_hierarchy_title^500
     - hierarchy_top_title^500
+  # DismaxHandler: edismax  
   DismaxParams:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
@@ -462,24 +463,29 @@ AllFields:
     - [bq, genre_facet:"Rezension"^0.1]
     - [bq, genre_facet:"book-review"^0.1]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
-#   - [bf=ord(publishDate)^500]          
-    - [bq, publishDateSort:2023^280]
-    - [bq, publishDateSort:2022^260]
-    - [bq, publishDateSort:2021^240]
-    - [bq, publishDateSort:2020^220]
-    - [bq, publishDateSort:2019^200]
-    - [bq, publishDateSort:2018^180]
-    - [bq, publishDateSort:2017^160]
-    - [bq, publishDateSort:2016^150]
-    - [bq, publishDateSort:2015^140]
-    - [bq, publishDateSort:2014^130]
-    - [bq, publishDateSort:2013^120]
-    - [bq, publishDateSort:202*^500]    
+    # - [bf=ord(publishDateSort)^500] 
+# Hebis inspired
+    # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
+# Docs inspired
+    - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
+# Old Approach
+    # - [bq, publishDateSort:2023^280]
+    # - [bq, publishDateSort:2022^260]
+    # - [bq, publishDateSort:2021^240]
+    # - [bq, publishDateSort:2020^220]
+    # - [bq, publishDateSort:2019^200]
+    # - [bq, publishDateSort:2018^180]
+    # - [bq, publishDateSort:2017^160]
+    # - [bq, publishDateSort:2016^150]
+    # - [bq, publishDateSort:2015^140]
+    # - [bq, publishDateSort:2014^130]
+    # - [bq, publishDateSort:2013^120]
+    # - [bq, publishDateSort:202*^220]    
    
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
 #    - [tie, 0.1]    
-  DismaxHandler: edismax
+  # DismaxHandler: edismax
 
 
 

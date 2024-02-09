@@ -126,4 +126,41 @@ describe('Review after reviewed', () => {
         })
     })
 
+
+   describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Sadeleer, Environmental principles. From political slogans to legal rules',
+                    type: 'allFields'
+                }
+            })
+        })
+
+        // mix of reviews and different media types monograph
+        // see #23
+        // old behaviour no longer reproducible, 
+        // 2020 book PPN 1740404548
+        // 2004 review PPN OLC1736991698
+        it('primary book should be before reviews', () => {
+            cy.get('[href*="1740404548"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="OLC1736991698"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
+        })
+    })
+
 })

@@ -16,7 +16,7 @@ describe('Chronology', () => {
         // DP: sometimes the date in resultlist-data conflicts with the exact date in details view
         // which can impact the percieved sorting
         // see #35
-        it.skip('Top 1 should be published after 2020', () => {
+        it.skip('Top 1 should be published in or after 2020', () => {
             cy.get('.resultlist-data')
                 .first()
                 .contains(/202\d/)
@@ -107,6 +107,7 @@ describe('Chronology', () => {
     })
 
     // see #36
+    // definition of relevance?
     describe('emanzipation juden', () => {
         beforeEach(() => {
             cy.visit({
@@ -117,8 +118,9 @@ describe('Chronology', () => {
                 }
             })
         })
-
-        it.skip('should ...', () => {
+ 
+ 
+        it.skip('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -127,8 +129,9 @@ describe('Chronology', () => {
     // 608 hits total but many do not contain the search terms in the title 
     // or are about later periods all together
     // why is 130141674 shown ?
+	// definition of relevance?
     // see #39
-    describe.skip('Kulturgeschichte deutsches Kaiserreich', () => {
+    describe('Kulturgeschichte deutsches Kaiserreich', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -139,7 +142,7 @@ describe('Chronology', () => {
             })
         })
 
-        it('should ...', () => {
+        it.skip('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -177,13 +180,16 @@ describe('Chronology', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'jugendliteratur mittelalter roman',
-                    type: 'allFields'
+                    type: 'allFields',
+					limit: '65'
                 }
             })
         })
 
         // see #40
-        it('should contain both primary and secondary literature', () => {
+		// 1st hit published 1985, 2nd 2002, 3rd 2011
+		// definition of relevance?
+        it('should show these items', () => {
             cy.get('[href*="272952737"]')
                 .should('exist')
             cy.get('[href*="1507865600"]')
@@ -191,6 +197,36 @@ describe('Chronology', () => {
             cy.get('[href*="1016493053"]')
                 .should('exist')
 
+        })
+		
+		it.skip('Later editions should be ranked higher', () => {
+            cy.get('[href*="1016493053"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="1507865600"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+                            cy.get('[href*="272952737"]')
+                                .parents('[id^="result"]')
+                                .find('.record-number')
+                                .invoke('text')
+                                .then(($num3) => {
+                                    const num3 = parseInt($num3)
+
+                                    expect(num2).to.be.lessThan(num3)
+                                })
+
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
         })
     })
 
@@ -207,35 +243,14 @@ describe('Chronology', () => {
 
         //  1756833699
         // not sure if this should or should not exist
+		// definition of relevance?
         // see #35
-        // see #22
-        it.skip('should show relevant titles in translation', () => {
+        it.skip('should show relevant titles according to chronology', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
         })
 
-        // PPN 389602841 2005
-        // PPN 430480865 1969
-        // see #35
-        it.skip('should show relevant titles in translation', () => {
-            cy.get('[href*="389602841"]')
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
-
-                    cy.get('[href*="430480865"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
-
-                            expect(num1).to.be.lessThan(num2)
-                        })
-                })
-        })
+          
     })
 
     describe('koptische Stoffe', () => {
@@ -296,42 +311,4 @@ describe('Chronology', () => {
                 })
         })
     })
-
-    describe('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'Sadeleer, Environmental principles. From political slogans to legal rules',
-                    type: 'allFields'
-                }
-            })
-        })
-
-        // mix of reviews and different media types
-        // see #23
-        // old behaviour no longer reproducible, 
-        // TOP1 is book (newest) followed by ebook 9same date) and earlier article with identical title
-        // 2020 book PPN 1740404548
-        // 2004 article PPN OLC1736991698
-        it('newer book shuold be before older article', () => {
-            cy.get('[href*="1740404548"]')
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
-
-                    cy.get('[href*="OLC1736991698"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
-                            expect(num1).to.be.lessThan(num2)
-                        })
-                })
-        })
-    })
-
 })
