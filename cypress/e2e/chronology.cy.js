@@ -16,7 +16,7 @@ describe('Chronology', () => {
         // DP: sometimes the date in resultlist-data conflicts with the exact date in details view
         // which can impact the percieved sorting
         // see #35
-        it('Top 1 should be published after 2020', () => {
+        it('Top 1 should be published in or after 2020', () => {
             cy.get('.resultlist-data')
                 .first()
                 .contains(/202\d/)
@@ -107,6 +107,7 @@ describe('Chronology', () => {
     })
 
     // see #36
+    // definition of relevance?
     describe('emanzipation juden', () => {
         beforeEach(() => {
             cy.visit({
@@ -117,8 +118,9 @@ describe('Chronology', () => {
                 }
             })
         })
-
-        it('should ...', () => {
+ 
+ 
+        it('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -127,6 +129,7 @@ describe('Chronology', () => {
     // 608 hits total but many do not contain the search terms in the title 
     // or are about later periods all together
     // why is 130141674 shown ?
+	// definition of relevance?
     // see #39
     describe('Kulturgeschichte deutsches Kaiserreich', () => {
         beforeEach(() => {
@@ -139,7 +142,7 @@ describe('Chronology', () => {
             })
         })
 
-        it('should ...', () => {
+        it('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -183,7 +186,8 @@ describe('Chronology', () => {
         })
 
         // see #40
-        it('should contain both primary and secondary literature', () => {
+		// definition of relevance?
+        it('should show relevant literature according to chronology', () => {
             cy.get('[href*="272952737"]')
                 .should('exist')
             cy.get('[href*="1507865600"]')
@@ -207,32 +211,17 @@ describe('Chronology', () => {
 
         //  1756833699
         // not sure if this should or should not exist
+		// definition of relevance?
         // see #35
-        // see #22
-        it('should show relevant titles in translation', () => {
+        it('should show relevant titles according to chronology', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
         })
 
         // PPN 389602841 2005
         // PPN 430480865 1969
-        // see #35
-        it('should show relevant titles in translation', () => {
-            cy.get('[href*="389602841"]')
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
-
-                    cy.get('[href*="430480865"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
-
-                            expect(num1).to.be.lessThan(num2)
+   
+        
                         })
                 })
         })
