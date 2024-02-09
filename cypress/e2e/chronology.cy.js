@@ -174,20 +174,22 @@ describe('Chronology', () => {
         })
     })
 
-    describe('jugendliteratur mittelalter roman', () => {
+    describe.only('jugendliteratur mittelalter roman', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'jugendliteratur mittelalter roman',
-                    type: 'allFields'
+                    type: 'allFields',
+					limit: '65'
                 }
             })
         })
 
         // see #40
+		// 1st hit published 1985, 2nd 2002, 3rd 2011
 		// definition of relevance?
-        it('should show relevant literature according to chronology', () => {
+        it('should show these items', () => {
             cy.get('[href*="272952737"]')
                 .should('exist')
             cy.get('[href*="1507865600"]')
@@ -195,6 +197,36 @@ describe('Chronology', () => {
             cy.get('[href*="1016493053"]')
                 .should('exist')
 
+        })
+		
+		it('Later editions should be ranked higher', () => {
+            cy.get('[href*="1016493053"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+                    cy.get('[href*="1507865600"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+                            cy.get('[href*="272952737"]')
+                                .parents('[id^="result"]')
+                                .find('.record-number')
+                                .invoke('text')
+                                .then(($num3) => {
+                                    const num3 = parseInt($num3)
+
+                                    expect(num2).to.be.lessThan(num3)
+                                })
+
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
         })
     })
 
@@ -218,13 +250,7 @@ describe('Chronology', () => {
                 .should('exist')
         })
 
-        // PPN 389602841 2005
-        // PPN 430480865 1969
-   
-        
-                        })
-                })
-        })
+          
     })
 
     describe('koptische Stoffe', () => {
