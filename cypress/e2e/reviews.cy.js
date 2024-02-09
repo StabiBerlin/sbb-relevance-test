@@ -143,7 +143,7 @@ describe('Review after reviewed', () => {
         // old behaviour no longer reproducible, 
         // 2020 book PPN 1740404548
         // 2004 review PPN OLC1736991698
-        it.only('primary book should be before reviews', () => {
+        it('primary book should be before reviews', () => {
             cy.get('[href*="1740404548"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
