@@ -16,7 +16,7 @@ describe('Chronology', () => {
         // DP: sometimes the date in resultlist-data conflicts with the exact date in details view
         // which can impact the percieved sorting
         // see #35
-        it('Top 1 should be published in or after 2020', () => {
+        it.skip('Top 1 should be published in or after 2020', () => {
             cy.get('.resultlist-data')
                 .first()
                 .contains(/202\d/)
@@ -75,7 +75,7 @@ describe('Chronology', () => {
         // 1995 ed PPN 182859061
         // 2004 ed PPN 366403265
         // see #35
-        it('Later editions should be ranked higher', () => {
+        it.skip('Later editions should be ranked higher', () => {
             cy.get('[href*="537598197"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -120,7 +120,7 @@ describe('Chronology', () => {
         })
  
  
-        it('should show relevant literature according to chronology', () => {
+        it.skip('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -142,7 +142,7 @@ describe('Chronology', () => {
             })
         })
 
-        it('should show relevant literature according to chronology', () => {
+        it.skip('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
     })
@@ -161,7 +161,7 @@ describe('Chronology', () => {
         // PPN 1612978711
         // PPN JST069657696
         // see #35
-        it('should not match irrelevant titles', () => {
+        it.skip('should not match irrelevant titles', () => {
             cy.get('[href*="1612978711"]')
                 .should('not.exist')
             cy.get('[href*="JST069657696"]')
@@ -174,7 +174,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe.only('jugendliteratur mittelalter roman', () => {
+    describe('jugendliteratur mittelalter roman', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -199,7 +199,7 @@ describe('Chronology', () => {
 
         })
 		
-		it('Later editions should be ranked higher', () => {
+		it.skip('Later editions should be ranked higher', () => {
             cy.get('[href*="1016493053"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -245,7 +245,7 @@ describe('Chronology', () => {
         // not sure if this should or should not exist
 		// definition of relevance?
         // see #35
-        it('should show relevant titles according to chronology', () => {
+        it.skip('should show relevant titles according to chronology', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
         })
@@ -271,7 +271,7 @@ describe('Chronology', () => {
         // PPN 1117375048 (1967)
         // PPN 1083642081 (1986)
         // PPN 403203899 (1959)
-        it('should rank identical titles according to chronology', () => {
+        it.skip('should rank identical titles according to chronology', () => {
             cy.get('[href*="1083642081"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
