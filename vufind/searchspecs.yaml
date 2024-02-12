@@ -463,11 +463,13 @@ AllFields:
     - [bq, genre_facet:"Rezension"^0.1]
     - [bq, genre_facet:"book-review"^0.1]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
-    # - [bf=ord(publishDateSort)^500] 
+# see #35
+# see #59
+    - [bf, 'ord(publishDateSort)^500'] 
 # Hebis inspired
     # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
 # Docs inspired
-    - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
+    # - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
 # Old Approach
     # - [bq, publishDateSort:2023^280]
     # - [bq, publishDateSort:2022^260]

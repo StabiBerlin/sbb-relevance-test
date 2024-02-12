@@ -1,7 +1,7 @@
 describe('Chronology', () => {
     // see #11  
 
-    describe('Andreas Gryphius', () => {
+    describe('Andreas Gryphius', {tags: ['@next']}, () => {
         // DP: add sort: 'year' to qs for sorted results
         beforeEach(() => {
             cy.visit({
@@ -17,7 +17,7 @@ describe('Chronology', () => {
         // DP: sometimes the date in resultlist-data conflicts with the exact date in details view
         // which can impact the percieved sorting
         // see #35
-        it.skip('Top 1 should be published in or after 2020', () => {
+        it('Top 1 should be published in or after 2020', () => {
             cy.get('.resultlist-data')
                 .first()
                 .contains(/202\d/)
@@ -246,9 +246,34 @@ describe('Chronology', () => {
         // not sure if this should or should not exist
         // definition of relevance?
         // see #35
-        it.skip('should show relevant titles according to chronology', () => {
+        it.skip('should show relevant title', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
+        })
+
+        // PPN 389602841 2005
+        // PPN 430480865 1969
+        // see #35
+        it.skip('should show relevant titles according to chronology', () => {
+            cy.get('[href*="389602841"]')
+                .parents('[id^="result"]')
+                .find('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+
+
+                    cy.get('[href*="430480865"]')
+                        .parents('[id^="result"]')
+                        .find('.record-number')
+                        .invoke('text')
+                        .then(($num2) => {
+                            const num2 = parseInt($num2)
+
+
+                            expect(num1).to.be.lessThan(num2)
+                        })
+                })
         })
 
 
