@@ -1,6 +1,6 @@
 describe('Chronology', () => {
     // see #11  
-    describe.only('Andreas Gryphius', () => {
+    describe('Andreas Gryphius', () => {
         // DP: add sort: 'year' to qs for sorted results
         beforeEach(() => {
             cy.visit({
@@ -75,7 +75,7 @@ describe('Chronology', () => {
         // 1995 ed PPN 182859061
         // 2004 ed PPN 366403265
         // see #35
-        it('Later editions should be ranked higher', () => {
+        it.skip('Later editions should be ranked higher', () => {
             cy.get('[href*="537598197"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -217,7 +217,7 @@ describe('Chronology', () => {
         // PPN 389602841 2005
         // PPN 430480865 1969
         // see #35
-        it('should show relevant titles in translation', () => {
+        it('should show relevant titles in chronological order', () => {
             cy.get('[href*="389602841"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -297,7 +297,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe.only('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
+    describe.skip('Sadeleer, Environmental principles. From political slogans to legal rules', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',

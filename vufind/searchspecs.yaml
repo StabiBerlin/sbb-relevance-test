@@ -452,7 +452,7 @@ AllFields:
     # - journal^500
     # - is_hierarchy_title^500
     # - hierarchy_top_title^500
-  DismaxHandler: edismax  
+  # DismaxHandler: edismax
   DismaxParams:
     # - [bq, format:eJournal^237]
     # - [bq, format:Journal^284]
@@ -465,12 +465,15 @@ AllFields:
     # - [bq, genre_facet:"Rezension"^0.1]
     # - [bq, genre_facet:"book-review"^0.1]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
-    - [bf, 'ord(publishDateSort)^500'] 
+# see https://github.com/StaatsbibliothekBerlin/findex-config/blob/be9eec72a4f6086bd05a3e779a8a860024746da4/SolrCloud/solr_config/schema.xml#L230
+# see  
+    - [bf, 'ord(publishDateSort)^500']
+    # - [bf, 'recip(rord(publishDateSort),1,100,500)'] 
 # Hebis inspired
-    # - [boost, 'sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)'] 
+    # - [boost, 'sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)']
 # Docs inspired
-    # - [bf, 'recip(ms(NOW/Year,ord(publishDateSort)),1,500,500)']
-    # - [bf, 'recip(abs(ms(NOW/DAY,publishDateSort)),3.16e-10,100,100)']
+    # - [bf, 'recip(ms(NOW/Year,ord(publishDateSort)),1,500,500)^500']
+    # - [bf, 'recip(abs(ms(NOW,publishDateSort)),3.16e-10,1,1)^500']
 # Old Approach
     # - [bq, publishDateSort:2023^280]
     # - [bq, publishDateSort:2022^260]
@@ -487,7 +490,7 @@ AllFields:
    
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
-#    - [tie, 0.1]    
+    - [tie, 0.1]
   # DismaxHandler: edismax
 
 
