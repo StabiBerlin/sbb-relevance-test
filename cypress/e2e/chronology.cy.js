@@ -1,5 +1,6 @@
 describe('Chronology', () => {
     // see #11  
+
     describe('Andreas Gryphius', () => {
         // DP: add sort: 'year' to qs for sorted results
         beforeEach(() => {
@@ -118,8 +119,8 @@ describe('Chronology', () => {
                 }
             })
         })
- 
- 
+
+
         it.skip('should show relevant literature according to chronology', () => {
             cy.get('.resultlist')
         })
@@ -129,7 +130,7 @@ describe('Chronology', () => {
     // 608 hits total but many do not contain the search terms in the title 
     // or are about later periods all together
     // why is 130141674 shown ?
-	// definition of relevance?
+    // definition of relevance?
     // see #39
     describe('Kulturgeschichte deutsches Kaiserreich', () => {
         beforeEach(() => {
@@ -181,14 +182,14 @@ describe('Chronology', () => {
                 qs: {
                     lookfor: 'jugendliteratur mittelalter roman',
                     type: 'allFields',
-					limit: '65'
+                    limit: '65'
                 }
             })
         })
 
         // see #40
-		// 1st hit published 1985, 2nd 2002, 3rd 2011
-		// definition of relevance?
+        // 1st hit published 1985, 2nd 2002, 3rd 2011
+        // definition of relevance?
         it('should show these items', () => {
             cy.get('[href*="272952737"]')
                 .should('exist')
@@ -198,8 +199,8 @@ describe('Chronology', () => {
                 .should('exist')
 
         })
-		
-		it.skip('Later editions should be ranked higher', () => {
+
+        it.skip('Later editions should be ranked higher', () => {
             cy.get('[href*="1016493053"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
@@ -243,14 +244,14 @@ describe('Chronology', () => {
 
         //  1756833699
         // not sure if this should or should not exist
-		// definition of relevance?
+        // definition of relevance?
         // see #35
         it.skip('should show relevant titles according to chronology', () => {
             cy.get('[href*="1756833699"]')
                 .should('exist')
         })
 
-          
+
     })
 
     describe('koptische Stoffe', () => {
@@ -309,6 +310,32 @@ describe('Chronology', () => {
                             expect(num1).to.be.lessThan(num2)
                         })
                 })
+        })
+    })
+
+    describe('future publication', () => {
+        // see #58
+        // run a query for publications 5 years from noww
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: '*',
+                    type: 'allFields',
+                    'daterange[]': 'publishDate',
+                    publishDatefrom: new Date().getFullYear() + 5,
+                    limit: 10
+                }
+            })
+        })
+        // most results are data errors
+        // e.g. https://stabikat.de/Record/181994543X publishDate = 2029 Display Date = [2020]
+        // hence we make a very weak assertion (instead of iterating through each result)
+        it('TOP10 should contain a future publication date', () => {
+
+            const now = new Date().getFullYear() + 5
+            cy.get('.resultlist-data')
+                .contains(now)
         })
     })
 })
