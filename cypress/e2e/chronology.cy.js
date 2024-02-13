@@ -355,12 +355,19 @@ describe('Chronology', () => {
         })
         // most results are data errors
         // e.g. https://stabikat.de/Record/181994543X publishDate = 2029 Display Date = [2020]
-        // hence we make a very weak assertion (instead of iterating through each result)
-        it('TOP10 should contain a future publication date', () => {
+        it('TOP1 should be from the future', () => {
 
             const now = new Date().getFullYear() + 5
-            cy.get('.resultlist-data')
-                .contains(now)
-        })
+            cy.get('.resultlist-data > div')
+                .first()
+                .invoke('text')
+                .then((s) => {
+                    const start = s.indexOf('2')
+                    return s.slice(start, start + 4)
+                })
+                .then(parseInt)
+                .should('be.a', 'number')
+                .and('be.gte', now)
+            })
     })
 })
