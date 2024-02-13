@@ -20,7 +20,7 @@ describe.skip('connecting to ', () => {
         })
     })
 
-    describe('vudfind 6', () => {
+    describe('vufind 6', () => {
         // This requires http proxy and should only work from internal network
         it('should GET results via request', () => {
             cy.request({
@@ -31,6 +31,24 @@ describe.skip('connecting to ', () => {
             }).then((resp) => {
                 expect(resp.status).to.eq(200)
             })
+        })
+
+        // Solr-Query is only logged to console on test servers
+        it('sees SOLR-Query', () => {
+
+            cy.visit({
+                url: 'http://b-dev20220203-vufind-6/Search/Results',
+                qs: {
+                    lookfor: 'dad',
+                    type: 'AllFields'
+                },
+                onBeforeLoad(win) {
+                    cy.spy(win.console, 'log').as('consoleLog')
+                }
+            })
+
+            cy.get('@consoleLog')
+              .should('be.called')
 
         })
     })
