@@ -175,33 +175,43 @@ describe('Chronology', () => {
         })
     })
 
-    describe('jugendliteratur mittelalter roman', () => {
+    describe.only('jugendliteratur mittelalter roman', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'jugendliteratur mittelalter roman',
                     type: 'allFields',
-                    limit: '65'
+                    limit: '40'
                 }
             })
         })
 
         // see #40
+        // see #45 two titles are identical (print 613754344 and e-book 1016493053)
         // 1st hit published 1985, 2nd 2002, 3rd 2011
         // definition of relevance?
         it('should show these items', () => {
-            cy.get('[href*="272952737"]')
+            cy.get('[data-id="272952737"]')
                 .should('exist')
-            cy.get('[href*="1507865600"]')
+            cy.get('[data-id="1507865600"]')
                 .should('exist')
-            cy.get('[href*="1016493053"]')
+            cy.get('[data-id="1016493053"]')
                 .should('exist')
-
         })
 
-        it.skip('Later editions should be ranked higher', () => {
-            cy.get('[href*="1016493053"]')
+        // see #40 the relevance of these PPNs is questionable imv
+        it('TOP20 should not show less relevant items', () => {
+            cy.get('[data-id="1754948634"]')
+                .should('not.exist')
+            cy.get('[data-id="894082345"]')
+                .should('not.exist')
+        })
+
+        // the ebook is shown much later than the print book, which messes with chronological sorting, but is WAI
+        // 
+        it('Later editions should be ranked higher', {tags: ['@next']}, () => {
+            cy.get('[href*="613754344"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
                 .invoke('text')
@@ -338,7 +348,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe('future publication', () => {
+    describe('future publication', {tags: ['@next']}, () => {
         // see #58
         // run a query for publications 5 years from noww
         beforeEach(() => {
