@@ -80,16 +80,16 @@ Mit GUI:
 npx cypress open
 ```
 
-Per Default laufen die Tests gegen den [Vufind-6 Server](http://b-dev20220203-vufind-6/). Die `searchspecs.yml` befindet sich im Verzeichnis: `/var/www/vufind/local/config/vufind`
+Per Default laufen die Tests gegen den [Ranking1](http://stabikat-ranking1/). Die `searchspecs.yml` befindet sich im Verzeichnis: `/var/www/vufind/local/config/vufind`
 
 ### Tagging
 
 Zur besseren Organisation der Tests via tags:
 
-- `@next` für Tests die in der Testinstanz `Vufind-6` laufen, aber noch nicht im produktivem Stabikat
+- `@next` für Tests die in der Testinstanz laufen, aber noch nicht im produktivem Stabikat
 
   ```js
-  // This works on Vufind6 but not on stabi
+  // This works on test environment but not on stabi
   it('CJK author search should return translations', {tags: ['@next']}, () => {
     cy.get('.record-list')
       .contains('Yan, Lianke')
