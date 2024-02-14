@@ -244,7 +244,7 @@ Author:
     - GND_txt_mv
     - author_os_txtP_mv
   DismaxHandler: edismax
-
+  
 ISN:
   DismaxFields:
     - isbn
@@ -357,10 +357,13 @@ AllFields:
     - series^50
     - series2^30
     - author^300
+#   - authorswithroles_txt_mv^300    
     - contents^10
     - topic_unstemmed^550
     - topic^500
     - geographic^300
+#   - class^240
+#   - bklname^250
     - genre^300
     - allfields_unstemmed^10
     - fulltext_unstemmed^10
@@ -373,15 +376,33 @@ AllFields:
     - allfieldsGer
     - id^50
     - hierarchy_top_id
+  DismaxParams:
+    - [bq, format:eJournal^237]
+    - [bq, format:Journal^284]
+    - [bq, format:eBook^255]
+    - [bq, format:Book^7500]
+    - [bq, format:Article^620]
+    - [bq, format:"electronic+Article"^620]
+    - [bq, format_facet:"Serienband"^0.1
+    
+    - [bq, publishDateSort:2023^180]
+    - [bq, publishDateSort:2022^160]
+    - [bq, publishDateSort:2021^140]
+    - [bq, publishDateSort:2020^120]
+    - [bq, publishDateSort:2019^100]
+    - [bq, publishDateSort:2018^80]
+    - [bq, publishDateSort:2017^60]
+    - [bq, publishDateSort:2016^50]
+    - [bq, publishDateSort:2015^40]
+    - [bq, publishDateSort:2014^30]
+    - [bq, publishDateSort:2013^20]
+    - [bq, publishDateSort:202*^300]
+    
+#    - [bq, collection_details:"GBV_ILN_11"^300]
+#    - [tie, 0.1]
+    
   DismaxHandler: edismax
-#  ExactSettings:
-#    DismaxFields:
-#      - title_full_unstemmed^600
-#      - topic_unstemmed^550
-#      - allfields_unstemmed^10
-#      - fulltext_unstemmed^10
-#      - isbn
-#      - issn
+
 
 JournalSearch:
   DismaxFields:
