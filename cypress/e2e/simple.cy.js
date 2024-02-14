@@ -20,11 +20,11 @@ describe.skip('connecting to ', () => {
         })
     })
 
-    describe('vufind 6', () => {
+    describe('Testumgebung', () => {
         // This requires http proxy and should only work from internal network
         it('should GET results via request', () => {
             cy.request({
-                url: 'http://b-dev20220203-vufind-6/Search/Results',
+                url: 'http://stabikat-ranking1/Search/Results',
                 qs: {
                     lookfor: 'dad'
                 }
@@ -37,7 +37,7 @@ describe.skip('connecting to ', () => {
         it('sees SOLR-Query', () => {
 
             cy.visit({
-                url: 'http://b-dev20220203-vufind-6/Search/Results',
+                url: 'http://stabikat-ranking1/Search/Results',
                 qs: {
                     lookfor: 'dad',
                     type: 'AllFields'
