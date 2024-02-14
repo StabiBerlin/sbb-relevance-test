@@ -431,9 +431,9 @@ AllFields:
     - author_os_txtP_mv^200
 #   - authorswithroles_txt_mv^300    
     - contents^0.01
-    - topic_title^50
-    - topic_unstemmed^50
-    # - topic^50
+    - topic_title^150
+    - topic_unstemmed^150
+    - topic^150
     # - geographic^300
     # - class^240
     - bklname
@@ -452,7 +452,7 @@ AllFields:
     - journal
     - is_hierarchy_title
     - hierarchy_top_title
-  # DismaxHandler: edismax 
+  # DismaxHandler: edismax
   DismaxParams:
     - [bq, format:Article^150]
     - [bq, format:"electronic+Article"^150]  
@@ -472,7 +472,10 @@ AllFields:
     - [tie, 0.1]
     - [mm, 4<-1 7<80%]
     - [ps, 3]
-    - [pf, title]
+    - [pf, title_short]
+  QueryFields:
+    title_short:
+      - [onephrase, 350]
 
 
 
