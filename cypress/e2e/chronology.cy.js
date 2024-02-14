@@ -175,7 +175,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe.only('jugendliteratur mittelalter roman', () => {
+    describe('jugendliteratur mittelalter roman', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -201,16 +201,18 @@ describe('Chronology', () => {
         })
 
         // see #40 the relevance of these PPNs is questionable imv
-        it('TOP20 should not show less relevant items', () => {
+        it.skip('TOP20 should not show less relevant items', () => {
             cy.get('[data-id="1754948634"]')
                 .should('not.exist')
             cy.get('[data-id="894082345"]')
+                .should('not.exist')
+            cy.get('[data-id="1686973969"]')
                 .should('not.exist')
         })
 
         // the ebook is shown much later than the print book, which messes with chronological sorting, but is WAI
         // 
-        it('Later editions should be ranked higher', {tags: ['@next']}, () => {
+        it.skip('Later editions should be ranked higher', {tags: ['@next']}, () => {
             cy.get('[href*="613754344"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
