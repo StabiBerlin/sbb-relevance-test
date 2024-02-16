@@ -160,7 +160,7 @@ describe('Author Search', () => {
         })
     })
 })
-describe('Elfriede Jelinek', () => {
+    describe('Elfriede Jelinek', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
@@ -187,5 +187,42 @@ describe('Elfriede Jelinek', () => {
                   .should('have.length', '20')
               })
 
-        })
+      	  })
+		  
+		   // see #14  
+    describe('barbara köhler' , () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'barbara köhler',
+                    type: 'Author'
+                }
+		    }}
+	    }}
+
+        // erster Treffer von Autorin
+        it('first hit should be by the author', {tags: ['@next']}, () => {
+            cy.get('#result0')
+                .find('.resultlist-data')
+                .contains(/(?=.*barbara)(?=.*köhler)/)
+				
+		}}		
+		
+		 // Top 15 in author search should all be by author
+        // see #28
+        it('Top 15 should all be by author', {tags: ['@next']}, () => {
+            cy.get('.resultlist-data')
+              .find('[href*=Author]')
+              .each(($el, index, $lis) => {
+                cy.wrap($el)
+                  .contains(/(?=.*barbara)(?=.*köhler)/)
+              })
+              .then(($lis) => {
+                cy.wrap($lis)
+                  .should('have.length', '15')
+				
+		        }            
+            })
+        }}
     })
