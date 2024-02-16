@@ -235,36 +235,67 @@
 # These searches use Dismax when possible:
 Author:
   DismaxFields:
-    - author^100
-    - author2
+    - author^350
+    - author2^100
     - author_additional
     - author_corporate
     - author_variant
     - author2_variant
-    - GND_txt_mv
+    - GND_txt_mv^200
     - author_os_txtP_mv
   DismaxHandler: edismax
   DismaxParams:
-    - [bq, format:eJournal^237]
-    - [bq, format:Journal^284]
-    - [bq, format:eBook^255]
-    - [bq, format:Book^500]
-    - [bq, format:Article^620]
-    - [bq, format:"electronic+Article"^620]
-    - [bq, format_facet:"Serienband"^0.1]
+  #   - [bq, format:eJournal^237]
+  #   - [bq, format:Journal^284]
+  #   - [bq, format:eBook^255]
+  #   - [bq, format:Book^500]
+  #   - [bq, format:Article^620]
+  #   - [bq, format:"electronic+Article"^620]
+  #   - [bq, format_facet:"Serienband"^0.1]
     
-    - [bq, publishDateSort:2023^1280]
-    - [bq, publishDateSort:2022^1260]
-    - [bq, publishDateSort:2021^1240]
-    - [bq, publishDateSort:2020^1220]
-    - [bq, publishDateSort:2019^1200]
-    - [bq, publishDateSort:2018^1180]
-    - [bq, publishDateSort:2017^1160]
-    - [bq, publishDateSort:2016^1150]
-    - [bq, publishDateSort:2015^1140]
-    - [bq, publishDateSort:2014^1130]
-    - [bq, publishDateSort:2013^1120]
-    - [bq, publishDateSort:202*^1500]
+    - [bq, publishDateSort:2023^90]
+    - [bq, publishDateSort:2022^80]
+    - [bq, publishDateSort:2021^70]
+    - [bq, publishDateSort:2020^60]
+    - [bq, publishDateSort:2019^50]
+    - [bq, publishDateSort:2018^45]
+    - [bq, publishDateSort:2017^40]
+    - [bq, publishDateSort:2016^35]
+    - [bq, publishDateSort:2015^30]
+    - [bq, publishDateSort:2014^25]
+    - [bq, publishDateSort:2013^20]
+    - [bq, publishDateSort:2024^100]  
+  
+ #Verbesserte Phrasensuche, eWW
+QueryFields:
+  author:
+    - [onephrase, 350]
+    - [author_initial, 100]
+  author2:
+    - [onephrase, 100]
+    - [author_initial, ~]
+  author_additional:
+    - [onephrase, 100]
+    - [author_initial, ~]
+  GND_txt_mv:
+    - [onephrase, 200]
+    - [author_initial, ~]
+ExactSettings:
+  QueryFields:
+    author:
+      - [onephrase, 350]
+    author2:
+      - [onephrase, 100]
+    author_additional:
+      - [onephrase, 100]
+    GND_txt_mv:
+      - [onephrase, 200]
+
+    
+  
+  
+  
+   
 
 ISN:
   DismaxFields:
@@ -387,12 +418,12 @@ Series:
 
 AllFields:
   DismaxFields:
-    - title_short^750
-    - title_full_unstemmed^600
-    - title_full^400
-    - title^500
-    - title_alt^200
-    - title_new^100
+    - title_short
+    - title_full_unstemmed
+    - title_full
+    - title
+    - title_alt
+    - title_new
     - series^50
     - series^100
 #   - series2^30
@@ -419,6 +450,7 @@ AllFields:
     - journal^500
     - is_hierarchy_title^500
     - hierarchy_top_title^500
+  # DismaxHandler: edismax  
   DismaxParams:
     - [bq, format:eJournal^237]
     - [bq, format:Journal^284]
@@ -430,24 +462,32 @@ AllFields:
     - [bq, format_facet:"Zeitschriften"^500]
     - [bq, genre_facet:"Rezension"^0.1]
     - [bq, genre_facet:"book-review"^0.1]
-     
-    - [bq, publishDateSort:2023^280]
-    - [bq, publishDateSort:2022^260]
-    - [bq, publishDateSort:2021^240]
-    - [bq, publishDateSort:2020^220]
-    - [bq, publishDateSort:2019^200]
-    - [bq, publishDateSort:2018^180]
-    - [bq, publishDateSort:2017^160]
-    - [bq, publishDateSort:2016^150]
-    - [bq, publishDateSort:2015^140]
-    - [bq, publishDateSort:2014^130]
-    - [bq, publishDateSort:2013^120]
-    - [bq, publishDateSort:202*^500]    
+# Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
+# see #35
+# see #59
+    - [bf, 'ord(publishDateSort)^500'] 
+# Hebis inspired
+    # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
+# Docs inspired
+    # - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
+# Old Approach
+    # - [bq, publishDateSort:2023^280]
+    # - [bq, publishDateSort:2022^260]
+    # - [bq, publishDateSort:2021^240]
+    # - [bq, publishDateSort:2020^220]
+    # - [bq, publishDateSort:2019^200]
+    # - [bq, publishDateSort:2018^180]
+    # - [bq, publishDateSort:2017^160]
+    # - [bq, publishDateSort:2016^150]
+    # - [bq, publishDateSort:2015^140]
+    # - [bq, publishDateSort:2014^130]
+    # - [bq, publishDateSort:2013^120]
+    # - [bq, publishDateSort:202*^220]    
    
     
 #    - [bq, collection_details:"GBV_ILN_11"^300]
 #    - [tie, 0.1]    
-  DismaxHandler: edismax
+  # DismaxHandler: edismax
 
 
 
@@ -518,6 +558,8 @@ TopicBrowse:
   QueryFields:
     topic_browse:
       - [onephrase, ~]
+      
+ 
 
 AuthorBrowse:
   QueryFields:
