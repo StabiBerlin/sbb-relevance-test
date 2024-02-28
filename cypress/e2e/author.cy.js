@@ -159,7 +159,7 @@ describe('Author Search', () => {
               })
         })
     })
-})
+
     describe('Elfriede Jelinek', () => {
         beforeEach(() => {
             cy.visit({
@@ -187,7 +187,8 @@ describe('Author Search', () => {
                   .should('have.length', '20')
               })
 
-      	  })
+      	})
+    }}	  
 		  
 		   // see #14  
     describe('barbara köhler' , () => {
