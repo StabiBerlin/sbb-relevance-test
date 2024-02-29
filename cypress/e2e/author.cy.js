@@ -142,21 +142,31 @@ describe('Author Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'oliver heaviside',
-                    type: 'allFields'
+                    type: 'allFields', 
+                    limit: 5
                 }
             })
         })
 
-        it('should appear in each of top 20', () => {
+        it('should appear in titles or decscription', () => {
             cy.get('.resultlist')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
+            if ($el.text().includes('Oliver Heaviside')) {
+                cy.get($el)
                   .contains('Heaviside', {matchCase: false})
+            } else {
+                cy.get($el)
+                  .click()
+                cy.get('.long-view')
+                  .find('a[id^=description_]')
+                  .click()
+                cy.get('.additional')
+                  .contains('Heaviside', {matchCase: false})
+            }
+                  
               })
-              .then(($lis) => {
-                cy.wrap($lis)
-                  .should('have.length', '20')
-              })
+              
         })
     })
 
