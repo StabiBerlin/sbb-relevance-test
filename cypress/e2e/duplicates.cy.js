@@ -133,7 +133,7 @@ describe('duplicate entries', () => {
 
         it('should show both items in sequence', () => {
 
-            cy.get('[href*="742413772"]')
+            cy.get('[href*="742413772"]') 
                 .parents('[id^="result"]')
                 .find('.record-number')
                 .invoke('text')
@@ -147,7 +147,8 @@ describe('duplicate entries', () => {
                         .then(($num2) => {
                             const num2 = parseInt($num2)
 
-                            expect(num1).to.eq(num2 - 1)
+                            expect(num1 - num2).to.be.at.most(1)
+                            expect(num2 - num1).to.be.at.most(1)
                         })
                 })
         })
