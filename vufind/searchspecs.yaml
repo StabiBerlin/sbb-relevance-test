@@ -467,10 +467,11 @@ AllFields:
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
-    - [bf, 'ord(publishDateSort)^500']    
+    - [bf, 'ord(publishDateSort)^500']
+    # - [bf, 'title_short^200']  
     - [bq, collection_details:"GBV_ILN_11"^200]
     - [tie, 0.1]
-    - [mm, 4<-1 7<80%]
+    - [mm, 4<-25% 7<80%]
     - [ps, 3]
     - [pf, title_short]
   QueryFields:
