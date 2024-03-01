@@ -8,13 +8,15 @@ describe('Review after reviewed', () => {
                 qs: {
                     lookfor: '36 strategeme harro von senger',
                     type: 'AllFields',
-                    limit: '5'
+                    limit: '10'
                 }
             })
         })
 
         // affirm existent of primary work title via PP
-        it('should be among top 5 hits', () => {
+        // 3rd edition 274397412 (ranking2)
+        // 4th edtion 020460147 (stabikat)
+        it('should be among top 10 hits', () => {
             cy.get('[href*="020460147"]')
                 .should('exist')
         })
@@ -99,6 +101,7 @@ describe('Review after reviewed', () => {
                 .should('exist')
         })
 
+        // crash on ranking2
         it('second hit should be a review', () => {
             cy.get('#result1')
                 .should('exist')

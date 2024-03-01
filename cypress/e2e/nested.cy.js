@@ -47,6 +47,8 @@ describe('Nested Work', () => {
 
     describe('Journal of Comparative Law 2021', () => {
         // (DP): parent work not in top 20
+        // need to boost parent work 
+        // see #66
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
