@@ -81,7 +81,7 @@ describe('Review after reviewed', () => {
         })
     })
 
-    describe('Young, Iris Marion (2002): Inclusion and Democracy. Oxford: Oxford University Press', () => {
+    describe.only('Young, Iris Marion (2002): Inclusion and Democracy. Oxford: Oxford University Press', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',

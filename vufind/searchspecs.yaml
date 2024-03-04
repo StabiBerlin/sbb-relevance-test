@@ -233,441 +233,67 @@
 #-----------------------------------------------------------------------------------
 
 # These searches use Dismax when possible:
-Author:
-  DismaxFields:
-    - author^350
-    - author2^100
-    - author_additional
-    - author_corporate
-    - author_variant
-    - author2_variant
-    - GND_txt_mv^200
-    - author_os_txtP_mv
-  DismaxHandler: edismax
-  DismaxParams:
-  #   - [bq, format:eJournal^237]
-  #   - [bq, format:Journal^284]
-  #   - [bq, format:eBook^255]
-  #   - [bq, format:Book^500]
-  #   - [bq, format:Article^620]
-  #   - [bq, format:"electronic+Article"^620]
-  #   - [bq, format_facet:"Serienband"^0.1]
-    
-    - [bq, publishDateSort:2023^90]
-    - [bq, publishDateSort:2022^80]
-    - [bq, publishDateSort:2021^70]
-    - [bq, publishDateSort:2020^60]
-    - [bq, publishDateSort:2019^50]
-    - [bq, publishDateSort:2018^45]
-    - [bq, publishDateSort:2017^40]
-    - [bq, publishDateSort:2016^35]
-    - [bq, publishDateSort:2015^30]
-    - [bq, publishDateSort:2014^25]
-    - [bq, publishDateSort:2013^20]
-    - [bq, publishDateSort:2024^100]  
-  
- #Verbesserte Phrasensuche, eWW
-QueryFields:
-  author:
-    - [onephrase, 350]
-    - [author_initial, 100]
-  author2:
-    - [onephrase, 100]
-    - [author_initial, ~]
-  author_additional:
-    - [onephrase, 100]
-    - [author_initial, ~]
-  GND_txt_mv:
-    - [onephrase, 200]
-    - [author_initial, ~]
-ExactSettings:
-  QueryFields:
-    author:
-      - [onephrase, 350]
-    author2:
-      - [onephrase, 100]
-    author_additional:
-      - [onephrase, 100]
-    GND_txt_mv:
-      - [onephrase, 200]
-
-    
-  
-  
-  
-   
-
-ISN:
-  DismaxFields:
-    - isbn
-    - issn
-  DismaxHandler: edismax
-
-Subject:
-  DismaxFields:
-    - topic_unstemmed^150
-    - topic^100
-    - geographic^50
-    - genre^50
-    - era
-    - title_short^150
-    - title_full_unstemmed^100
-    - title_full^100
-    - title^50
-    - title_alt^50
-    - title_new^50
-    - title_old
-    - series^100
-    - series2
-    - title_os_txtP_mv
-  DismaxParams:
-    - [bq, format:eJournal^237]
-    - [bq, format:Journal^284]
-    - [bq, format:eBook^255]
-    - [bq, format:Book^500]
-    - [bq, format:Article^620]
-    - [bq, format:"electronic+Article"^620]
-    - [bq, format_facet:"Serienband"^0.1]
-    
-    - [bq, publishDateSort:2023^1280]
-    - [bq, publishDateSort:2022^1260]
-    - [bq, publishDateSort:2021^1240]
-    - [bq, publishDateSort:2020^1220]
-    - [bq, publishDateSort:2019^1200]
-    - [bq, publishDateSort:2018^1180]
-    - [bq, publishDateSort:2017^1160]
-    - [bq, publishDateSort:2016^1150]
-    - [bq, publishDateSort:2015^1140]
-    - [bq, publishDateSort:2014^1130]
-    - [bq, publishDateSort:2013^1120]
-    - [bq, publishDateSort:202*^1500]
-  DismaxHandler: edismax
-
-Keyword:
-  DismaxFields:
-    - topic_unstemmed^50
-    - topic^50
-    - GND_txt_mv
-  DismaxHandler: edismax
-
-Coordinate:
-  DismaxFields:
-    - long_lat_display
-  DismaxHandler: edismax
-
-# This field definition is a compromise that supports both journal-level and
-# article-level data.  The disadvantage is that hits in article titles will
-# be mixed in.  If you are building a purely article-oriented index, you should
-# customize this to remove all of the title_* fields and focus entirely on the
-# container_title field.
-JournalTitle:
-  DismaxFields:
-    - title_short^500
-    - title_full_unstemmed^450
-    - title_full^400
-    - title^300
-    - container_title^250
-    - title_alt^200
-    - title_new^100
-    - title_old
-    - series^100
-    - series2
-    - title_os_txtP_mv
-  DismaxParams:
-    - [bq,format:Journal^200]
-    - [bq,format:eJournal^100]
-  DismaxHandler: edismax
-  FilterQuery: "format:Journal OR format:eJournal"
-#  ExactSettings:
-#    DismaxFields:
-#      - title_full_unstemmed^450
-#    FilterQuery: "format:Journal OR format:Article"
-
-Title:
-  DismaxFields:
-    - title_short^500
-    - title_full_unstemmed^650
-    - title_full^400
-    - title_fullGer^400
-    - title^300
-    - title_alt^200
-    - title_new^100
-    - title_old
-    - series^100
-    - series2
-    - title_os_txtP_mv
-  DismaxHandler: edismax
-#  ExactSettings:
-#    DismaxFields:
-#      - title_full_unstemmed^450
-
-BKL:
-  DismaxMunge: 
-    - [preg_replace, '/^./', '"$0']
-    - [append, '"']
-  DismaxFields:
-    - bklnumber
-    - bklname
-  DismaxHandler: edismax
-
-Series:
-  DismaxFields:
-    - series^100
-    - series2
-  DismaxHandler: edismax
 
 AllFields:
-  DismaxFields:
-    - title_short^200
-    - title_os_txtP_m^100
-    - title_full_unstemmed
-    - title_full
-    - title^100
+  # DismaxFields:
+    # - title_short^200
+    # - title_os_txtP_m^100
+    # - title_full_unstemmed
+    # - title_full
+    # - title^100
     # - title_alt^200
     # - title_new^100
-    - series^150
+    # - series^150
 #   - series2^30
-    - author^200
-    - author_os_txtP_mv^200
+    # - author^200
+    # - author_os_txtP_mv^200
 #   - authorswithroles_txt_mv^300    
-    - contents^0.01
-    - topic_title^150
-    - topic_unstemmed^150
-    - topic^150
+    # - contents^0.01
+    # - topic_title^150
+    # - topic_unstemmed^150
+    # - topic^150
     # - geographic^300
     # - class^240
-    - bklname
-    - genre
-    - allfields_unstemmed^0.01
-    - fulltext_unstemmed^0.01
+    # - bklname
+    # - genre
+    # - allfields_unstemmed^0.01
+    # - fulltext_unstemmed^0.01
     # - allfields
     # - fulltext
-    - description^0.01
-    - isbn
-    - issn
+    # - description^0.01
+    # - isbn
+    # - issn
     # - long_lat_display
     # - allfieldsGer
-    - id^50
+    # - id^50
     # - hierarchy_top_id
-    - journal
-    - is_hierarchy_title
-    - hierarchy_top_title
-  # DismaxHandler: edismax
-  DismaxParams:
-    - [bq, format:Article^150]
-    - [bq, format:"electronic+Article"^150]  
-    - [bq, format:Book^150]
-    - [bq, format_facet:"Zeitschriften"^150]
-    - [bq, format:Journal^100]     
-    - [bq, format:eBook^150]
-    - [bq, format:eJournal^100]
-    - [bq, format_facet:"Serienband"^0.01]
-    - [bq, genre_facet:"Rezension"^0.01]
-    - [bq, genre_facet:"book-review"^0.01]
+    # - journal
+    # - is_hierarchy_title
+    # - hierarchy_top_title
+
+  # DismaxParams:
+  #   - [bq, format:Article^150]
+  #   - [bq, format:"electronic+Article"^150]  
+  #   - [bq, format:Book^150]
+  #   - [bq, format_facet:"Zeitschriften"^150]
+  #   - [bq, format:Journal^100]     
+  #   - [bq, format:eBook^150]
+  #   - [bq, format:eJournal^100]
+  #   - [bq, format_facet:"Serienband"^0.01]
+  #   - [bq, genre_facet:"Rezension"^0.01]
+  #   - [bq, genre_facet:"book-review"^0.01]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
-    - [bf, 'ord(publishDateSort)^500']
+    # - [bf, 'ord(publishDateSort)^500']
     # - [bf, 'title_short^200']  
-    - [bq, collection_details:"GBV_ILN_11"^200]
-    - [tie, 0.1]
-    - [mm, 4<-25% 7<80%]
-    - [ps, 3]
-    - [pf, title_short]
-  QueryFields:
-    title_short:
-      - [onephrase, 350]
-
-
-
-JournalSearch:
-  DismaxFields:
-    - title_short^500
-    - title_full_unstemmed^650
-    - title_full^400
-    - title^300
-    - container_title^250
-    - title_alt^200
-    - title_new^100
-    - title_old
-    - series^100
-    - series2
-    - title_os_txtP_mv
-  DismaxParams:
-    - [bq,format:Journal^600]
-    - [bq,format:eJournal^300]
-  DismaxHandler: edismax
-  FilterQuery: "format:Journal OR format:eJournal OR format: \"Serial Volume\""
-#  ExactSettings:
-#    DismaxFields:
-#      - title_full_unstemmed^450
-#    FilterQuery: "format:Journal OR format:Article"
-
-ShelfMark:
-  DismaxMunge:
-    # Strip quotes:
-    # - [preg_replace, '/["]/', '']
-    # Escape whitespaces:
-    - [preg_replace, '/[ ]/', '\ ']
-    # Escape colons (unescape first to avoid double-escapes):
-    - [preg_replace, '/(\\:)/', ':']
-    - [preg_replace, '/:/', '\:']
-    # Strip pre-existing trailing asterisks:
-    # - [preg_replace, '/\*+$/', '']
-    # Add iln 11
-    - [preg_replace, '/^./', '11\:$0']
-  DismaxFields:
-    - signature_iln_str_mv
-    - signature_iln_scis_mv
-  DismaxHandler: edismax
-
-Provenience:
-  DismaxFields:
-    - provenience_txtP_mv
-  DismaxHandler: edismax
-
-# These are advanced searches that never use Dismax:
-id:
-  QueryFields:
-    id:
-      - [onephrase, ~]
-
-ParentID:
-  QueryFields:
-    hierarchy_parent_id:
-      - [onephrase, ~]
-
-# Fields for exact matches originating from alphabetic browse
-ids:
-  QueryFields:
-    id:
-      - [or, ~]
-
-TopicBrowse:
-  QueryFields:
-    topic_browse:
-      - [onephrase, ~]
-      
- 
-
-AuthorBrowse:
-  QueryFields:
-    author_browse:
-      - [onephrase, ~]
-
-TitleBrowse:
-  QueryFields:
-    title_full:
-      - [onephrase, ~]
-
-DeweyBrowse:
-  QueryFields:
-    dewey-raw:
-      - [onephrase, ~]
-
-LccBrowse:
-  QueryFields:
-    callnumber-raw:
-      - [onephrase, ~]
-
-CallNumber:
-  # We use two similar munges here -- one for exact matches, which will get
-  # a very high boost factor, and one for left-anchored wildcard searches,
-  # which will return a larger number of hits at a lower boost.
-  CustomMunge:
-    callnumber_exact:
-      # Strip whitespace and quotes:
-      - [preg_replace, '/[ "]/', '']
-      # Escape colons (unescape first to avoid double-escapes):
-      - [preg_replace, '/(\\:)/', ':']
-      - [preg_replace, '/:/', '\:']
-      # Strip pre-existing trailing asterisks:
-      - [preg_replace, '/\*+$/', '']
-    callnumber_fuzzy:
-      # Strip whitespace and quotes:
-      - [preg_replace, '/[ "]/', '']
-      # Escape colons (unescape first to avoid double-escapes):
-      - [preg_replace, '/(\\:)/', ':']
-      - [preg_replace, '/:/', '\:']
-      # Strip pre-existing trailing asterisks, then add a new one:
-      - [preg_replace, '/\*+$/', '']
-      - [append, "*"]
-  QueryFields:
-    callnumber-search:
-      - [callnumber_exact, 1000]
-      - [callnumber_fuzzy, ~]
-    dewey-search:
-      - [callnumber_exact, 1000]
-      - [callnumber_fuzzy, ~]
-
-publisher:
-  DismaxFields:
-    - publisher^100
-    - pulishPlace^100
-  QueryFields:
-    publisher:
-      - [and, 100]
-      - [or, ~]
-
-year:
-  DismaxFields:
-    - publishDate^100
-  QueryFields:
-    publishDate:
-      - [and, 100]
-      - [or, ~]
-
-language:
-  QueryFields:
-    language:
-      - [and, ~]
-
-toc:
-  DismaxFields:
-    - contents^100
-  QueryFields:
-    contents:
-      - [and, 100]
-      - [or, ~]
-
-topic:
-  QueryFields:
-    topic:
-      - [and, 50]
-    topic_facet:
-      - [and, ~]
-
-geographic:
-  QueryFields:
-    geographic:
-      - [and, 50]
-    geographic_facet:
-      - [and, ~]
-
-genre:
-  QueryFields:
-    genre:
-      - [and, 50]
-    genre_facet:
-      - [and, ~]
-
-era:
-  QueryFields:
-    era:
-      - [and, ~]
-
-oclc_num:
-  CustomMunge:
-    oclc_num:
-      - [preg_replace, "/[^0-9]/", ""]
-      # trim leading zeroes:
-      - [preg_replace, "/^0*/", ""]
-  QueryFields:
-    oclc_num:
-      - [oclc_num, ~]
-
-WorkKeys:
-  QueryFields:
-    work_keys_str_mv:
-      - [and, 100]
-      - [or, ~]
+    # - [bq, collection_details:"GBV_ILN_11"^200]
+    # - [tie, 0.1]
+    # - [mm, 4<-25% 7<80%]
+    # - [ps, 3]
+    # - [pf, title_short]
+# enabling edismax reproduces the colon problem
+  # DismaxHandler: edismax
+  # QueryFields:
+  #   title_short:
+  #     - [onephrase, 350]
