@@ -18,5 +18,11 @@ describe('known item searches', () => {
         cy.get('[id*="result"]')
           .should('have.length', 2)
     })
+
+    // this passes in production
+    it('TOP1 should be the known item', () => {
+        cy.get('#result0')
+          .contains('Metzler-Lexikon Theatertheorie')
+    })
 })
 })

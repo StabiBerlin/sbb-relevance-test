@@ -182,26 +182,38 @@ describe('Chronology', () => {
                 qs: {
                     lookfor: 'jugendliteratur mittelalter roman',
                     type: 'allFields',
-                    limit: '65'
+                    limit: '40'
                 }
             })
         })
 
         // see #40
+        // see #45 two titles are identical (print 613754344 and e-book 1016493053)
         // 1st hit published 1985, 2nd 2002, 3rd 2011
         // definition of relevance?
         it('should show these items', () => {
-            cy.get('[href*="272952737"]')
+            cy.get('[data-id="272952737"]')
                 .should('exist')
-            cy.get('[href*="1507865600"]')
+            cy.get('[data-id="1507865600"]')
                 .should('exist')
-            cy.get('[href*="1016493053"]')
+            cy.get('[data-id="1016493053"]')
                 .should('exist')
-
         })
 
-        it.skip('Later editions should be ranked higher', () => {
-            cy.get('[href*="1016493053"]')
+        // see #40 the relevance of these PPNs is questionable imv
+        it.skip('TOP20 should not show less relevant items', () => {
+            cy.get('[data-id="1754948634"]')
+                .should('not.exist')
+            cy.get('[data-id="894082345"]')
+                .should('not.exist')
+            cy.get('[data-id="1686973969"]')
+                .should('not.exist')
+        })
+
+        // the ebook is shown much later than the print book, which messes with chronological sorting, but is WAI
+        // 
+        it.skip('Later editions should be ranked higher', {tags: ['@next']}, () => {
+            cy.get('[href*="613754344"]')
                 .parents('[id^="result"]')
                 .find('.record-number')
                 .invoke('text')
@@ -338,7 +350,7 @@ describe('Chronology', () => {
         })
     })
 
-    describe('future publication', () => {
+    describe('future publication', {tags: ['@next']}, () => {
         // see #58
         // run a query for publications 5 years from noww
         beforeEach(() => {
@@ -355,12 +367,19 @@ describe('Chronology', () => {
         })
         // most results are data errors
         // e.g. https://stabikat.de/Record/181994543X publishDate = 2029 Display Date = [2020]
-        // hence we make a very weak assertion (instead of iterating through each result)
-        it('TOP10 should contain a future publication date', () => {
+        it('TOP1 should be from the future', () => {
 
             const now = new Date().getFullYear() + 5
-            cy.get('.resultlist-data')
-                .contains(now)
-        })
+            cy.get('.resultlist-data > div')
+                .first()
+                .invoke('text')
+                .then((s) => {
+                    const start = s.indexOf('2')
+                    return s.slice(start, start + 4)
+                })
+                .then(parseInt)
+                .should('be.a', 'number')
+                .and('be.gte', now)
+            })
     })
 })

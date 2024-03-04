@@ -418,76 +418,65 @@ Series:
 
 AllFields:
   DismaxFields:
-    - title_short
+    - title_short^200
+    - title_os_txtP_m^100
     - title_full_unstemmed
     - title_full
-    - title
-    - title_alt
-    - title_new
-    - series^50
-    - series^100
+    - title^100
+    # - title_alt^200
+    # - title_new^100
+    - series^150
 #   - series2^30
-    - author^300
+    - author^200
+    - author_os_txtP_mv^200
 #   - authorswithroles_txt_mv^300    
-    - contents^10
-    - topic_unstemmed^550
-    - topic^500
-    - geographic^300
-    - class^240
-    - bklname^250
-    - genre^300
-    - allfields_unstemmed^10
-    - fulltext_unstemmed^10
-    - allfields
-    - fulltext
-    - description
+    - contents^0.01
+    - topic_title^150
+    - topic_unstemmed^150
+    - topic^150
+    # - geographic^300
+    # - class^240
+    - bklname
+    - genre
+    - allfields_unstemmed^0.01
+    - fulltext_unstemmed^0.01
+    # - allfields
+    # - fulltext
+    - description^0.01
     - isbn
     - issn
-    - long_lat_display
-    - allfieldsGer
+    # - long_lat_display
+    # - allfieldsGer
     - id^50
-    - hierarchy_top_id
-    - journal^500
-    - is_hierarchy_title^500
-    - hierarchy_top_title^500
-  # DismaxHandler: edismax  
+    # - hierarchy_top_id
+    - journal
+    - is_hierarchy_title
+    - hierarchy_top_title
+  # DismaxHandler: edismax
   DismaxParams:
-    - [bq, format:eJournal^237]
-    - [bq, format:Journal^284]
-    - [bq, format:eBook^255]
-    - [bq, format:Book^500]
-    - [bq, format:Article^620]
-    - [bq, format:"electronic+Article"^620]
-    - [bq, format_facet:"Serienband"^0.1]
-    - [bq, format_facet:"Zeitschriften"^500]
-    - [bq, genre_facet:"Rezension"^0.1]
-    - [bq, genre_facet:"book-review"^0.1]
+    - [bq, format:Article^150]
+    - [bq, format:"electronic+Article"^150]  
+    - [bq, format:Book^150]
+    - [bq, format_facet:"Zeitschriften"^150]
+    - [bq, format:Journal^100]     
+    - [bq, format:eBook^150]
+    - [bq, format:eJournal^100]
+    - [bq, format_facet:"Serienband"^0.01]
+    - [bq, genre_facet:"Rezension"^0.01]
+    - [bq, genre_facet:"book-review"^0.01]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
-    - [bf, 'ord(publishDateSort)^500'] 
-# Hebis inspired
-    # - [boost, sum(product(max(0,sum(product(abs(ms(NOW/YEAR,publishDateSort)),-5.285e-13),1)),6.5),500)] 
-# Docs inspired
-    # - [bf=recip(ms(NOW/Year,ord(publishDateSort)),1,1000,1000)]
-# Old Approach
-    # - [bq, publishDateSort:2023^280]
-    # - [bq, publishDateSort:2022^260]
-    # - [bq, publishDateSort:2021^240]
-    # - [bq, publishDateSort:2020^220]
-    # - [bq, publishDateSort:2019^200]
-    # - [bq, publishDateSort:2018^180]
-    # - [bq, publishDateSort:2017^160]
-    # - [bq, publishDateSort:2016^150]
-    # - [bq, publishDateSort:2015^140]
-    # - [bq, publishDateSort:2014^130]
-    # - [bq, publishDateSort:2013^120]
-    # - [bq, publishDateSort:202*^220]    
-   
-    
-#    - [bq, collection_details:"GBV_ILN_11"^300]
-#    - [tie, 0.1]    
-  # DismaxHandler: edismax
+    - [bf, 'ord(publishDateSort)^500']
+    # - [bf, 'title_short^200']  
+    - [bq, collection_details:"GBV_ILN_11"^200]
+    - [tie, 0.1]
+    - [mm, 4<-25% 7<80%]
+    - [ps, 3]
+    - [pf, title_short]
+  QueryFields:
+    title_short:
+      - [onephrase, 350]
 
 
 

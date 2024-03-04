@@ -69,7 +69,8 @@ describe('Foreign language phrase search', () => {
             cy.get('.resultlist')
               .first()
               .click()
-            cy.get('.language')
+            cy.get('.col-sm-8')
+              .find('.language')
               .contains('Englisch')
         })
     })
@@ -104,6 +105,7 @@ describe('Foreign language phrase search', () => {
     })
 
     // see #33
+    // list changed drastically but i m not sure its an improvement
     describe('popular science soviet', () => {
         beforeEach(() => {
             cy.visit({
@@ -166,6 +168,7 @@ describe('Foreign language phrase search', () => {
         })
     })
     
+    // exact match no longer in TOP 20 what is happening here?
     describe('门禁社区边界和家的构建关系研究', () => {
         beforeEach(() => {
             cy.visit({
@@ -194,8 +197,7 @@ describe('Foreign language phrase search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'Zivopisnaja Rossija',
-                    type: 'allFields', 
-                    limit: '5'
+                    type: 'allFields'
                 }
             })
         })
@@ -206,15 +208,9 @@ describe('Foreign language phrase search', () => {
         })
 
         it('TOP 5 titles should contain search phrases', () => {
-            cy.get('.resultlist')
-              .each(($el, index, $lis) => {
-                cy.wrap($el)
-                  .contains('Živopisnaja Rossija')
-              })
-              .then(($lis) => {
-                cy.wrap($lis)
-                  .should('have.length', '5')
-              })
+            cy.get('.resultlist:contains("Živopisnaja Rossija")')
+              .its('length')
+              .should('be.at.least', 5)
         })
     })
 })

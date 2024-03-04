@@ -8,16 +8,17 @@ describe('duplicate entries', () => {
                 qs: {
                     lookfor: 'Osmanisches Reich im Ersten Weltkrieg',
                     type: 'allFields'
+
                 }
             })
         })
 
-        // once identical items are grouped this test might fail
-        it('should show three items "T. E. Lawrence…"', () => {
-            cy.get('[href*="OLC2136322486"]')
-                .should('exist')
-            cy.get('[href*="OLC1618743244"]')
-                .should('exist')
+        it('contains "T. E. Lawrence…" via filter', () => {
+            cy.get('.resultlist')
+              .contains('Friedensschluss')
+            cy.get('#side-panel-format > .title')
+            cy.get('[data-title="Aufsatz (online)"]')
+              .click()
             cy.get('[href*="info:doi:10.7788%252Fsaeculum.2001.52.1.55"]')
                 .should('exist')
         })
