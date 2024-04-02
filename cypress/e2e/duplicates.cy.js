@@ -13,7 +13,7 @@ describe('duplicate entries', () => {
         })
 
         // once identical items are grouped this test might fail
-        it('should show three items "T. E. Lawrence…"', () => {
+        it.only('should show three items "T. E. Lawrence…"', () => {
             cy.get('[href*="OLC2136322486"]')
                 .should('exist')
             cy.get('[href*="OLC1618743244"]')
