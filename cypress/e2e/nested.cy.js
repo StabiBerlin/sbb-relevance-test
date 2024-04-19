@@ -25,6 +25,31 @@ describe('Nested Work', () => {
                 .contains(' Band einer Zeitschrift/Zeitung ')
         })
     })
+	
+	describe('African American Review', () => {
+        // check if exact match first list item is the journal parent and subsequent entries are child works
+    
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'African American Review',
+                    type: 'Journal',
+                    "filter[]": '~remote_bool:"false"'
+                }
+            })
+        })
+
+        // see #25
+        it.skip('should appear before child work', () => {
+            cy.get('#result0')
+                .find('.media-type')
+                .contains(' Zeitschrift (gedruckt) ')
+            cy.get('#result1')
+                .find('.media-type')
+                .contains(' Band einer Zeitschrift/Zeitung ')
+        })
+    })
 
     describe('Nachrichten Organ Bergbau Hüttenbetrieb', () => {
         beforeEach(() => {
