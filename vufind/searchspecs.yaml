@@ -451,7 +451,7 @@ AllFields:
     # - [bf, 'title_short^200']  
     - [bq, collection_details:"GBV_ILN_11"^200]
     - [tie, 0.1]
-    - [mm, 4<-25% 7<80%]
+#   - [mm, 4<-25% 7<80%]
     - [ps, 3]
     - [pf, title_short]
   QueryFields:
