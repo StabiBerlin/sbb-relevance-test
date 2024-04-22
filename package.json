@@ -24,7 +24,7 @@
   "homepage": "https://github.com/StaatsbibliothekBerlin/sbb-relevance-test#readme",
   "devDependencies": {
     "@cypress/grep": "^4.0.1",
-    "cypress": "^13.7.3",
+    "cypress": "^13.8.0",
     "yaml-lint": "^1.7.0",
     "yamljs": "^0.3.0"
   }
