@@ -16,7 +16,7 @@ describe('Nested Work', () => {
         })
 
         // see #25
-        it.skip('should appear before child work', () => {
+        it('should appear before child work', () => {
             cy.get('#result0')
                 .find('.media-type')
                 .contains(' Zeitschrift (gedruckt) ')
@@ -41,7 +41,7 @@ describe('Nested Work', () => {
         })
 
         // see #25
-        it.skip('should appear before child work', () => {
+        it('should appear before child work', () => {
             cy.get('#result0')
                 .find('.media-type')
                 .contains(' Zeitschrift (gedruckt) ')
