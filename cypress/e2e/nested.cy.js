@@ -34,8 +34,9 @@ describe('Nested Work', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'African American Review',
-                    type: 'Journal',
-                    "filter[]": '~remote_bool:"false"'
+                    type: 'Journal'
+					sort: 'year'
+                    
                 }
             })
         })
