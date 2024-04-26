@@ -35,7 +35,6 @@ describe('Nested Work', () => {
                 qs: {
                     lookfor: 'African American Review',
                     type: 'Journal'
-					sort: 'year'
                     
                 }
             })
