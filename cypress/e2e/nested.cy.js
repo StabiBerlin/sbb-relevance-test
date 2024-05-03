@@ -34,7 +34,7 @@ describe('Nested Work', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'African American Review',
-                    type: 'Journal'
+                    type: 'JournalSearch'
                     
                 }
             })
