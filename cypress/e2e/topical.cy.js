@@ -228,6 +228,7 @@ describe('Topical Search', () => {
 
     // boost search terms in subject fields above formal index fields like title keyword etc. 
 	// this topic search should contain French titles in first 10 search hits
+	// Ranking1 from branch Tweaks: top 5 good, search hit 7 and beyond not relevant
     describe('pariser kommune', () => {
         beforeEach(() => {
             cy.visit({
