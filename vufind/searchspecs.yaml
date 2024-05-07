@@ -409,20 +409,20 @@ AllFields:
 #   - series2^30
     - author^200
     - author_os_txtP_mv^200
-#   - authorswithroles_txt_mv^300    
-    - contents^0.01
+    - authorswithroles_txt_mv^300    
+    # - contents^0.01
     - topic_title^150
     - topic_unstemmed^150
     - topic^150
-    # - geographic^300
-    # - class^240
+    - geographic^300
+    - class^240
     - bklname
     - genre
-    - allfields_unstemmed^0.01
-    - fulltext_unstemmed^0.01
-    # - allfields
-    # - fulltext
-    - description^0.01
+    # - allfields_unstemmed^0.01
+    # - fulltext_unstemmed^0.01
+    # - allfields^0.01
+   # - fulltext
+   # - description^0.01
     - isbn
     - issn
     # - long_lat_display
@@ -451,7 +451,7 @@ AllFields:
     # - [bf, 'title_short^200']  
     - [bq, collection_details:"GBV_ILN_11"^200]
     - [tie, 0.1]
-#   - [mm, 4<-25% 7<80%]
+    - [mm, 4<-25% 7<80%]
     - [ps, 3]
     - [pf, title_short]
   QueryFields:
