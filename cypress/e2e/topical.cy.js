@@ -223,5 +223,27 @@ describe('Topical Search', () => {
         })
     })
 
+        })
+    })
+
+    // boost search terms in subject fields above formal index fields like title keyword etc. 
+	// this topic search should contain French titles in first 10 search hits
+    describe('pariser kommune', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'pariser kommune',
+                    type: 'topic_title',
+                    limit: 10
+                }
+            })
+        }) 
+
+        it.skip ('TOP10 should contain search terms in subject fields', () => {
+            cy.get('.resultlist')
+                .contains('pariser kommune')
+        })
+    })
     
 })
