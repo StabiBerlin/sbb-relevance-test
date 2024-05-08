@@ -235,14 +235,14 @@ describe('Topical Search', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'pariser kommune',
-                    type: 'topic_title',
+                    type: 'truncate-subjects',
                     limit: 10
                 }
             })
         }) 
 
         it.skip ('TOP10 should contain search terms in subject fields', () => {
-            cy.get('.resultlist')
+            cy.get('.truncate-subject')
                 .contains('pariser kommune')
         })
     })
