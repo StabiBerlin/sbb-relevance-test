@@ -158,17 +158,13 @@ describe('Author Search', () => {
             } else {
                 cy.get($el)
                   .click()
-                cy.get('.long-view')
-                  .find('a[id^=description_]')
-                  .click()
-                cy.get('.additional')
+                cy.get('.detail-data')
                   .contains('Heaviside', {matchCase: false})
-            }
-                  
-              })
-              
+            }       
+            })    
         })
     })
+
 
     describe('Elfriede Jelinek', () => {
         beforeEach(() => {
