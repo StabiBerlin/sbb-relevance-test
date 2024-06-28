@@ -318,7 +318,7 @@ Subject:
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
     
-    - [bf, 'ord(publishDateSort)^500']
+    - [bf, 'ord(publishDateSort)^1500']
     
   DismaxHandler: edismax
 
