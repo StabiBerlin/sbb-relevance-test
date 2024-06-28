@@ -253,7 +253,7 @@ Author:
     - [bq, format:"electronic+Article"^620]
     - [bq, format_facet:"Serienband"^0.1]
     
-    - [bf, 'ord(publishDateSort)^500']
+    - [bf, 'ord(publishDateSort)^100']
   
  #Verbesserte Phrasensuche, eWW
 QueryFields:
