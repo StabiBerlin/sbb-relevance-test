@@ -125,62 +125,63 @@ describe('duplicate entries', () => {
                 })
         })
 
-        it('should show 2 items "Todessymbolik in Komoposi…"', () => {
-            cy.get('[href*="742413772"]')
-                .should('exist')
-            cy.get('[href*="097133701"]')
-                .should('exist')
-        })
+        // see #95 no longer duplicate items
+        // it('should show 2 items "Todessymbolik in Komoposi…"', () => {
+        //     cy.get('[href*="742413772"]')
+        //         .should('exist')
+        //     cy.get('[href*="097133701"]')
+        //         .should('exist')
+        // })
 
-        it('should show both items in sequence', () => {
+        // it('should show both items in sequence', () => {
 
-            cy.get('[href*="742413772"]') 
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
+        //     cy.get('[href*="742413772"]') 
+        //         .parents('[id^="result"]')
+        //         .find('.record-number')
+        //         .invoke('text')
+        //         .then(($num1) => {
+        //             const num1 = parseInt($num1)
 
-                    cy.get('[href*="097133701"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
+        //             cy.get('[href*="097133701"]')
+        //                 .parents('[id^="result"]')
+        //                 .find('.record-number')
+        //                 .invoke('text')
+        //                 .then(($num2) => {
+        //                     const num2 = parseInt($num2)
 
-                            expect(num1 - num2).to.be.at.most(1)
-                            expect(num2 - num1).to.be.at.most(1)
-                        })
-                })
-        })
+        //                     expect(num1 - num2).to.be.at.most(1)
+        //                     expect(num2 - num1).to.be.at.most(1)
+        //                 })
+        //         })
+        // })
 
-        it('should show 2 items "…in der Musik"', () => {
-            cy.get('[href*="144358150X"]')
-                .should('exist')
-            cy.get('[href*="544614259"]')
-                .should('exist')
-        })
+        // it('should show 2 items "…in der Musik"', () => {
+        //     cy.get('[href*="144358150X"]')
+        //         .should('exist')
+        //     cy.get('[href*="544614259"]')
+        //         .should('exist')
+        // })
 
-        it('should show both items in sequence', () => {
+        // it('should show both items in sequence', () => {
 
-            cy.get('[href*="144358150X"]')
-                .parents('[id^="result"]')
-                .find('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
+        //     cy.get('[href*="144358150X"]')
+        //         .parents('[id^="result"]')
+        //         .find('.record-number')
+        //         .invoke('text')
+        //         .then(($num1) => {
+        //             const num1 = parseInt($num1)
 
-                    cy.get('[href*="544614259"]')
-                        .parents('[id^="result"]')
-                        .find('.record-number')
-                        .invoke('text')
-                        .then(($num2) => {
-                            const num2 = parseInt($num2)
+        //             cy.get('[href*="544614259"]')
+        //                 .parents('[id^="result"]')
+        //                 .find('.record-number')
+        //                 .invoke('text')
+        //                 .then(($num2) => {
+        //                     const num2 = parseInt($num2)
 
-                            expect(num1).to.eq(num2 - 1)
-                        })
-                })
-        })
+        //                     expect(num1).to.eq(num2 - 1)
+        //                 })
+        //         })
+        // })
     })
 
     describe('The Law of nature in the thought of Hugo grotius', () => {
@@ -194,9 +195,47 @@ describe('duplicate entries', () => {
             })
         })
 
-        it('should find at three matches', () => {
+        it('should find at least three matches', () => {
             cy.get('[id*="result"]')
               .should('have.length.gte', 3)
+        })
+    })
+
+    // see #95 
+    // see above
+    describe('Todessymbolik in Komposi…', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Todessymbolik in Kompositionen auf den Tod römisch-deutscher Könige und Kaiser',
+                    type: 'Title'
+                }
+            })
+        })
+
+        it('should find one match', () => {
+            cy.get('[id*="result"]')
+              .should('have.length', 1)
+        })
+    })
+
+    // see #95 
+    // see above
+    describe('Todessymbolik in der Musik', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Todessymbolik in der Musik',
+                    type: 'Title'
+                }
+            })
+        })
+
+        it('should find one match', () => {
+            cy.get('[id*="result"]')
+              .should('have.length', 1)
         })
     })
 
