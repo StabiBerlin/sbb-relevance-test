@@ -5,6 +5,7 @@ const { defineConfig } = require("cypress");
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://stabikat-ranking1/Search',
+    waitForAnimations: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

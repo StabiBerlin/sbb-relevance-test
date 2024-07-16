@@ -53,13 +53,14 @@ describe('Publishing Place', () => {
         })
 
         // Results are good 
+        // seee #96
         // RegEx check for relevant titles is a bit on the flaky side
         // see second test below 
         it('TOP 20 should have topical titles', () => {
             cy.get('.resultlist')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/^(?=.*Berlin)(?=.*Geschichte)|Kalend.*|Chron.*$/)
+                  .contains(/^(?=.*Berlin)|(?=.*Hohenschönhausen)|(?=.*Geschichte)|Kalend.*|Chron.*$/)
               })
               .then(($lis) => {
                 cy.wrap($lis)

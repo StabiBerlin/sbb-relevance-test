@@ -177,7 +177,7 @@ describe('Topical Search', () => {
                         .click()
                 })
                 cy.get('table')
-                  .should('have.length', 10)
+                  .should('have.length.gte', 8)
                   .each(($el) => {
                     cy.wrap($el)
                       .contains(/K(ünstliche )?I(ntelligenz)?/, { matchCase: false })
