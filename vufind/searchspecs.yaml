@@ -245,13 +245,13 @@ Author:
     - author_os_txtP_mv
   DismaxHandler: edismax
   DismaxParams:
-  #   - [bq, format:eJournal^237]
-  #   - [bq, format:Journal^284]
-  #   - [bq, format:eBook^255]
-  #   - [bq, format:Book^500]
-  #   - [bq, format:Article^620]
-  #   - [bq, format:"electronic+Article"^620]
-  #   - [bq, format_facet:"Serienband"^0.1]
+    - [bq, format:eJournal^237]
+    - [bq, format:Journal^284]
+    - [bq, format:eBook^255]
+    - [bq, format:Book^500]
+    - [bq, format:Article^620]
+    - [bq, format:"electronic+Article"^620]
+    - [bq, format_facet:"Serienband"^0.1]
     
     - [bq, publishDateSort:2023^90]
     - [bq, publishDateSort:2022^80]
@@ -265,6 +265,10 @@ Author:
     - [bq, publishDateSort:2014^25]
     - [bq, publishDateSort:2013^20]
     - [bq, publishDateSort:2024^100]  
+   
+  # this function tends to mess up results in comparison to above chronology functions; the higher the boost factor, the worse it gets 
+  # 200 is already too high, 100 is just tolerable (author search "karin glaser")
+  #  - [bf, 'ord(publishDateSort)^100']
   
  #Verbesserte Phrasensuche, eWW
 QueryFields:
@@ -429,7 +433,7 @@ AllFields:
 #   - series2^30
     - author^200
     - author_os_txtP_mv^200
-#   - authorswithroles_txt_mv^300    
+    - authorswithroles_txt_mv^300    
     - contents^0.01
     - topic_title^150
     - topic_unstemmed^150
@@ -440,7 +444,7 @@ AllFields:
     - genre
     - allfields_unstemmed^0.01
     - fulltext_unstemmed^0.01
-    # - allfields
+    - allfields
     # - fulltext
     - description^0.01
     - isbn
@@ -448,7 +452,7 @@ AllFields:
     # - long_lat_display
     # - allfieldsGer
     - id^50
-    # - hierarchy_top_id
+    - hierarchy_top_id
     - journal
     - is_hierarchy_title
     - hierarchy_top_title
@@ -467,8 +471,8 @@ AllFields:
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
-    - [bf, 'ord(publishDateSort)^500']
-    # - [bf, 'title_short^200']  
+    # - [bf, 'ord(publishDateSort)^500']
+    - [bf, 'title_short^200']  
     - [bq, collection_details:"GBV_ILN_11"^200]
     - [tie, 0.1]
     - [mm, 4<-25% 7<80%]

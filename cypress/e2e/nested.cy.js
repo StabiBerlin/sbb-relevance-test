@@ -4,12 +4,13 @@ describe('Nested Work', () => {
         // Title search and online access false to limit noise
         // check if exact match first list item is the journal parent and subsequent entries are child works
         // a more elaborate test would compare the value of '.record-number' within the same family
+		// needs to work using "allFields" (UX shows hardly anyone uses other search indices) so changed test (Annette)
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
                 qs: {
                     lookfor: 'African American Review',
-                    type: 'Title',
+                    type: 'allFields',
                     "filter[]": '~remote_bool:"false"'
                 }
             })
