@@ -408,6 +408,22 @@ BKL:
   DismaxFields:
     - bklnumber
     - bklname
+  DismaxParams:
+    - [bq, format:Book^600]
+    - [bq, format:eBook^300]
+    - [bq, language:German^200]
+    - [bq, language:English^200]
+  DismaxHandler: edismax
+
+BKLBrowse:
+  DismaxFields:
+    - bklnumber
+    - bklname
+  DismaxParams:
+    - [bq, format:Book^600]
+    - [bq, format:eBook^300]
+    - [bq, language:German^200]
+    - [bq, language:English^200]
   DismaxHandler: edismax
 
 Series:
