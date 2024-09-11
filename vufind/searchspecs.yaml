@@ -466,9 +466,9 @@ AllFields:
     - publisher
     - publishPlace
     - id^50
-    - doi_str_mv
-    - author2
-    - container_title
+    # - doi_str_mv
+    # - author2
+    # - container_title
     # - hierarchy_top_id
     - journal
     - is_hierarchy_title
