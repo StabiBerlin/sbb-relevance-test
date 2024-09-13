@@ -210,7 +210,7 @@ describe('Author Search', () => {
         it('first hit should be by the author', {tags: ['@next']}, () => {
             cy.get('#result0')
                 .find('.resultlist-data')
-                .contains(/(?=.*barbara)(?=.*köhler)/)
+                .contains(/(?=.*Barbara)(?=.*Köhler)/)
 				
 		})
         
@@ -220,7 +220,7 @@ describe('Author Search', () => {
               .find('[href*=Author]')
               .each(($el, index, $lis) => {
                 cy.wrap($el)
-                  .contains(/(?=.*barbara)(?=.*köhler)/)
+                  .contains(/(?=.*Barbara)(?=.*Köhler)/)
               })
               .then(($lis) => {
                 cy.wrap($lis)
