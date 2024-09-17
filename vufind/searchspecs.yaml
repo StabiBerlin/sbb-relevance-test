@@ -253,6 +253,9 @@ Author:
   #   - [bq, format:"electronic+Article"^620]
   #   - [bq, format_facet:"Serienband"^0.1]
     
+    - [bq, genre_facet:"Rezension"^0.01]
+    - [bq, genre_facet:"book-review"^0.01]
+    
     - [bq, publishDateSort:2023^90]
     - [bq, publishDateSort:2022^80]
     - [bq, publishDateSort:2021^70]
