@@ -249,8 +249,8 @@ Author:
   #   - [bq, format:Journal^284]
   #   - [bq, format:eBook^255]
   #   - [bq, format:Book^500]
-  #   - [bq, format:Article^620]
-  #   - [bq, format:"electronic+Article"^620]
+    - [bq, format:Article^0.1]
+    - [bq, format:"electronic+Article"^0.1]
   #   - [bq, format_facet:"Serienband"^0.1]
     
     - [bq, genre_facet:"Rezension"^0.01]
