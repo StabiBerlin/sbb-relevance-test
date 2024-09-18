@@ -13,7 +13,7 @@ describe('Review after reviewed', () => {
             })
         })
 
-        // affirm existent of primary work title via PP
+        // affirm existent of primary work title via PPN
         // 3rd edition 274397412 (ranking2)
         // 4th edtion 020460147 (stabikat)
         it('should be among top 10 hits', () => {
@@ -27,6 +27,8 @@ describe('Review after reviewed', () => {
                 .contains('Strategeme')
                 .should('not.contain', 'Rezension')
                 .should('not.contain', 'Book Reviews')
+				.should('not.contain', 'Book Review')
+				.should('not.contain', 'Review')
         })
     })
 
@@ -54,6 +56,8 @@ describe('Review after reviewed', () => {
                 .contains('Manik')
                 .should('not.contain', 'Rezension')
                 .should('not.contain', 'Book Reviews')
+				.should('not.contain', 'Book Review')
+				.should('not.contain', 'Review')
         })
     })
 
@@ -126,6 +130,10 @@ describe('Review after reviewed', () => {
               .find('.save-record')
               .invoke('attr', 'data-id')
               .should('equal','364739789')
+			  .should('not.contain', 'Rezension')
+              .should('not.contain', 'Book Reviews')
+		      .should('not.contain', 'Book Review')
+			  .should('not.contain', 'Review')
         })
     })
 
@@ -161,6 +169,10 @@ describe('Review after reviewed', () => {
                         .then(($num2) => {
                             const num2 = parseInt($num2)
                             expect(num1).to.be.lessThan(num2)
+						.should('not.contain', 'Rezension')
+                        .should('not.contain', 'Book Reviews')
+				        .should('not.contain', 'Book Review')
+			        	.should('not.contain', 'Review')
                         })
                 })
         })
