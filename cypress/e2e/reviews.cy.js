@@ -1,7 +1,7 @@
 describe('Review after reviewed', () => {
     // see #12
     // we should add more language specific searches here
-    describe('36 Strategems', () => {
+    describe('36 Strategeme', () => {
         beforeEach(() => {
             cy.visit({
                 url: '/Results',
