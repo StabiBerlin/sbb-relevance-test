@@ -386,20 +386,25 @@ JournalTitle:
 Title:
   DismaxFields:
     - title_short^500
-    - title_full_unstemmed^650
-    - title_full^400
-    - title_fullGer^400
-    - title^300
-    - title_alt^200
-    - title_new^100
-    - title_old
-    - series^100
-    - series2
-    - title_os_txtP_mv
-  DismaxHandler: edismax
-#  ExactSettings:
-#    DismaxFields:
-#      - title_full_unstemmed^450
+   # - title_full_unstemmed^650
+   # - title_full^400
+   # - title_fullGer^400
+   # - title^300
+   # - title_alt^200
+   # - title_new^100
+   # - title_old
+   #  - series^100
+   #  - series2
+   #  - title_os_txtP_mv
+    - is_hierarchy_title
+    - hierarchy_top_title
+    - hierarchy_parent_title
+  # DismaxHandler: edismax
+  
+  ExactSettings:
+    DismaxFields:
+     # - title_full_unstemmed^450
+     - is_hierarchy_title
 
 BKL:
   DismaxMunge: 
@@ -488,7 +493,7 @@ AllFields:
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
-    - [bf, 'ord(publishDateSort)^500']
+    - [bf, 'ord(publishDateSort)^250']
     # - [bf, 'title_short^200']  
     - [bq, collection_details:"GBV_ILN_11"^200]
     - [tie, 0.1]

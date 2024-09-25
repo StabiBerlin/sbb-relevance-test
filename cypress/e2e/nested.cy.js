@@ -8,7 +8,7 @@ describe('Nested Work', () => {
             cy.visit({
                 url: '/Results',
                 qs: {
-                    lookfor: 'African American Review',
+                    lookfor: 'African American review',
                     type: 'Title',
                     "filter[]": '~remote_bool:"false"'
                 }
@@ -16,13 +16,62 @@ describe('Nested Work', () => {
         })
 
         // see #25
-        it.skip('should appear before child work', () => {
+        it.only('should appear before child work', () => {
             cy.get('#result0')
                 .find('.media-type')
                 .contains(' Zeitschrift (gedruckt) ')
             cy.get('#result1')
                 .find('.media-type')
                 .contains(' Band einer Zeitschrift/Zeitung ')
+				
+describe('African American Review', () => {
+         // check if exact match first list item is the journal parent and subsequent entries are child works
+        // a more elaborate test would compare the value of '.record-number' within the same family
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'African American review',
+                    type: 'AllFields',
+                    "filter[]": '~remote_bool:"false"'
+                }
+            })
+        })
+
+        // see #25
+        it.only('should appear before child work', () => {
+            cy.get('#result0')
+                .find('.media-type')
+                .contains(' Zeitschrift (gedruckt) ')
+            cy.get('#result1')
+                .find('.media-type')
+                .contains(' Band einer Zeitschrift/Zeitung ')
+				
+describe('African American Review', () => {
+        // Title search and online access false to limit noise
+        // check if exact match first list item is the journal parent and subsequent entries are child works
+        // a more elaborate test would compare the value of '.record-number' within the same family
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'African American review',
+                    type: 'Title',
+                    "filter[]": '~remote_bool:"false"'
+                }
+            })
+        })
+
+        // see #25
+        it.only('should appear before child work', () => {
+            cy.get('#result0')
+                .find('.media-type')
+                .contains(' Zeitschrift (gedruckt) ')
+            cy.get('#result1')
+                .find('.media-type')
+                .contains(' Band einer Zeitschrift/Zeitung ')
+
+
         })
     })
 
