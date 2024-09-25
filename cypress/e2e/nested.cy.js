@@ -24,7 +24,10 @@ describe('Nested Work', () => {
                 .find('.media-type')
                 .contains(' Band einer Zeitschrift/Zeitung ')
 				
-describe('African American Review', () => {
+        })
+    })				
+				
+    describe('African American Review', () => {
          // check if exact match first list item is the journal parent and subsequent entries are child works
         // a more elaborate test would compare the value of '.record-number' within the same family
         beforeEach(() => {
@@ -46,8 +49,10 @@ describe('African American Review', () => {
             cy.get('#result1')
                 .find('.media-type')
                 .contains(' Band einer Zeitschrift/Zeitung ')
+        })
+    })				
 				
-describe('African American Review', () => {
+    describe('African American Review', () => {
         // Title search and online access false to limit noise
         // check if exact match first list item is the journal parent and subsequent entries are child works
         // a more elaborate test would compare the value of '.record-number' within the same family
