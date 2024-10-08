@@ -65,7 +65,7 @@ describe('Nested Work', () => {
             })
         })
 
-        it.skip('should appear before child work', () => {
+        it('should appear before child work', {tags: ['@next']}, () => {
             cy.get('#result0')
                 .find('.media-type')
                 .contains(' Zeitschrift (gedruckt) ')
