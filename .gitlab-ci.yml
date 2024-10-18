@@ -12,6 +12,8 @@ test:
   stage: test
   script:
     # install dependencies
+    - apt-get update -y
+    - apt-get install -y -qq xvfb libnss3-dev libgdk-pixbuf2.0-dev libgtk-3-dev libxss-dev libasound2 
     - npm ci
     # run Cypress tests
     - npx cypress run
