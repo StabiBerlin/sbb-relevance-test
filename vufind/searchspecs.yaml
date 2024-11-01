@@ -468,7 +468,7 @@ AllFields:
     - journal
     - is_hierarchy_title
     - hierarchy_top_title
-  # DismaxHandler: edismax
+     # DismaxHandler: edismax
   DismaxParams:
     - [bq, format:Article^150]
     - [bq, format:"electronic+Article"^150]  
@@ -480,6 +480,7 @@ AllFields:
     - [bq, format_facet:"Serienband"^0.01]
     - [bq, genre_facet:"Rezension"^0.01]
     - [bq, genre_facet:"book-review"^0.01]
+    - [bq, format_details_str_mv:"Rezension"^0.01]
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
