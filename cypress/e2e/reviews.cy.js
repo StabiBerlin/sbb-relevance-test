@@ -165,5 +165,27 @@ describe('Review after reviewed', () => {
                 })
         })
     })
+	
+	 describe('Mäser, Rolf (2000): Bach und die drei Temporätsel. Bern: Peter Lang', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Bach und die drei Temporätsel',
+                    type: 'AllFields', 
+                    limit: '10'
+                }
+            })
+        })
+
+        // PPN 161359545X
+               it.('first hit matches exact title', () => {
+            cy.get('#result0')
+                .find('[href*="161359545X"]')
+                .should('exist')
+				        })
+                })
+        })
+    })
 
 })
