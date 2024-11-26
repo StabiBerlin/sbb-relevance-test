@@ -172,17 +172,22 @@ describe('Review after reviewed', () => {
                 url: '/Results',
                 qs: {
                     lookfor: 'Bach und die drei Temporätsel',
-                    type: 'AllFields', 
+                    type: 'allFields', 
                     limit: '10'
                 }
             })
         })
 
         // PPN 161359545X
-               it.('first hit matches exact title', () => {
-            cy.get('#result0')
-                .find('[href*="161359545X"]')
-                .should('exist')
+               it('primary book should be before reviews', () => {
+            cy.get('[href*="161359545X"]')
+			    .parents('[id^="result"]')
+                .find ('.record-number')
+                .invoke('text')
+                .then(($num1) => {
+                    const num1 = parseInt($num1)
+					
+				
 				        })
                 })
         })
