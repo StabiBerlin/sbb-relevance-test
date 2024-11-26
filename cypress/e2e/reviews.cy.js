@@ -186,11 +186,9 @@ describe('Review after reviewed', () => {
                 .invoke('text')
                 .then(($num1) => {
                     const num1 = parseInt($num1)
-					
 				
-				        })
-                })
-        })
+               			
+			  })
+		})
     })
-
 })
