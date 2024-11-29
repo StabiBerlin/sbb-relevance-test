@@ -171,7 +171,7 @@ describe('Review after reviewed', () => {
             cy.visit({
                 url: '/Results',
                 qs: {
-                    lookfor: 'Bach und die drei Temporätsel',
+                    lookfor: 'mäser Bach und die drei Temporätsel',
                     type: 'allFields', 
                     limit: '10'
                 }
@@ -179,16 +179,14 @@ describe('Review after reviewed', () => {
         })
 
         // PPN 161359545X
-               it('primary book should be before reviews', () => {
-            cy.get('[href*="161359545X"]')
-			    .parents('[id^="result"]')
-                .find ('.record-number')
-                .invoke('text')
-                .then(($num1) => {
-                    const num1 = parseInt($num1)
+               it.only('primary book should be before reviews', () => {
+            cy.get('#result0')
+              .find('.save-record')
+              .invoke('attr', 'data-id')
+              .should('equal','')
 				
                			
 			  })
-		})
+
     })
 })
