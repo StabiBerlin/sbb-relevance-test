@@ -183,7 +183,7 @@ describe('Review after reviewed', () => {
             cy.get('#result0')
               .find('.save-record')
               .invoke('attr', 'data-id')
-              .should('equal','')
+              .should('equal','161359545X')
 				
                			
 			  })
