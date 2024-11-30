@@ -493,7 +493,13 @@ AllFields:
     - [bq, (*:* NOT genre:review)^2000]
     - [bq, (*:* NOT allfields_unstemmed:Rezension)^2000]
     - [bq, (*:* NOT allfields_unstemmed:review)^2000]
-
+ #  - [bq, topic_facet:"Besprechungen"^0.0001]
+ #  - [bq, genre:"Rezension"^0.0001]
+ #  - [bq, title-sub:"Rezension"^0.0001]
+ #  - [bq, (*:* NOT topic_facet:Besprechungen)^20000]
+ #  - [bq, topic_facet:"Besprechungen"^0.0001]
+ #  - [bq, genre:"Rezension"^0.0001]
+ #  - [bq, title-sub:"Rezension"^0.0001]
 
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
