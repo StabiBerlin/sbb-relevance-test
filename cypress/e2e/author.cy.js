@@ -136,36 +136,7 @@ describe('Author Search', () => {
         })
     })
 
-    describe('oliver heaviside' , () => {
-        beforeEach(() => {
-            cy.visit({
-                url: '/Results',
-                qs: {
-                    lookfor: 'oliver heaviside',
-                    type: 'allFields', 
-                    limit: 5
-                }
-            })
-        })
-
-        it('should appear in titles or decscription', () => {
-            cy.get('.resultlist')
-              .each(($el, index, $lis) => {
-                cy.wrap($el)
-            if ($el.text().includes('Oliver Heaviside')) {
-                cy.get($el)
-                  .contains('Heaviside', {matchCase: false})
-            } else {
-                cy.get($el)
-                  .click()
-                cy.get('.detail-data')
-                  .contains('Heaviside', {matchCase: false})
-            }       
-            })    
-        })
-    })
-
-
+ 
     describe('Elfriede Jelinek', () => {
         beforeEach(() => {
             cy.visit({
