@@ -165,5 +165,54 @@ describe('Review after reviewed', () => {
                 })
         })
     })
+	
+	 describe('Title Search "Bach und die drei Temporätsel" for this book: Mäser, Rolf (2000): Bach und die drei Temporätsel. Bern: Peter Lang', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Bach und die drei Temporätsel',
+                    type: 'Title', 
+                    limit: '10'
+                }
+            })
+        })
 
+        // PPN 161359545X
+		// test fails in live system
+               it('primary book should be before reviews', () => {
+            cy.get('#result0')
+              .find('.save-record')
+              .invoke('attr', 'data-id')
+              .should('equal','161359545X')
+				
+               			
+			  })
+
+    })
+
+	
+	describe('AllFields Search  "Mäser Bach und die drei Temporätsel" for this book: Mäser, Rolf (2000): Bach und die drei Temporätsel. Bern: Peter Lang', () => {
+        beforeEach(() => {
+            cy.visit({
+                url: '/Results',
+                qs: {
+                    lookfor: 'Mäser Bach und die drei Temporätsel',
+                    type: 'AllFields', 
+                    limit: '10'
+                }
+            })
+        })
+
+        // PPN 161359545X
+               it.skip('primary book should be before reviews', () => {
+            cy.get('#result0')
+              .find('.save-record')
+              .invoke('attr', 'data-id')
+              .should('equal','161359545X')
+				
+               			
+			  })
+
+    })
 })
