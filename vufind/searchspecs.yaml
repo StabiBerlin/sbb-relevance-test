@@ -231,7 +231,7 @@
 # relative to the path of the file defining it.
 #
 #-----------------------------------------------------------------------------------
-
+#
 # These searches use Dismax when possible:
 Author:
   DismaxFields:
