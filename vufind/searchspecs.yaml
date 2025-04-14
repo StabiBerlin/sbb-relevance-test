@@ -137,7 +137,7 @@
 # test:
 #   QueryFields:
 #     A:
-#       - [onephrase, 500]
+#       - [onephrase, 400]
 #       - [and, 200]
 #     B:
 #       - [and, 100]
