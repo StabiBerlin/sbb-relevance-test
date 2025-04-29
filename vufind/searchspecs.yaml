@@ -397,6 +397,8 @@ Title:
     - series2
     - title_os_txtP_mv
   DismaxHandler: edismax
+  DismaxParams:
+    - [bq, (*:* NOT format_details_str_mv:Rezension)^500]
 #  ExactSettings:
 #    DismaxFields:
 #      - title_full_unstemmed^450
@@ -473,7 +475,7 @@ AllFields:
     - journal
     - is_hierarchy_title
     - hierarchy_top_title
-  # DismaxHandler: edismax
+#  DismaxHandler: edismax
   DismaxParams:
     - [bq, format:Article^150]
     - [bq, format:"electronic+Article"^150]  
@@ -483,8 +485,16 @@ AllFields:
     - [bq, format:eBook^150]
     - [bq, format:eJournal^100]
     - [bq, format_facet:"Serienband"^0.01]
-    - [bq, genre_facet:"Rezension"^0.01]
-    - [bq, genre_facet:"book-review"^0.01]
+    - [bq, (*:* NOT format_details_str_mv:Rezension)^2000]
+    - [bq, (*:* NOT format_details_str_mv:review)^2000]
+    - [bq, (*:* NOT genre_facet:Rezension)^2000]
+    - [bq, (*:* NOT genre_facet:review)^2000]
+    - [bq, (*:* NOT genre:Rezension)^2000]
+    - [bq, (*:* NOT genre:review)^2000]
+    - [bq, (*:* NOT allfields_unstemmed:Rezension)^2000]
+    - [bq, (*:* NOT allfields_unstemmed:review)^2000]
+
+
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
@@ -498,6 +508,7 @@ AllFields:
   QueryFields:
     title_short:
       - [onephrase, 350]
+ 
 
 
 
