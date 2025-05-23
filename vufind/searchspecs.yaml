@@ -492,8 +492,8 @@ AllFields:
     - [bq, title_fullStr:“Rezension“ˆ0.1]
     - [bq, title_full:“book-review“ˆ0.1]
     - [bq, title_fullStr:“book-review“ˆ0.1]
-    - [bq, title_full:“ recension“ˆ0.1]
-    - [bq, title_fullStr:“ recension“ˆ0.1]
+    - [bq, title_full:“recension“ˆ0.1]
+    - [bq, title_fullStr:“recension“ˆ0.1]
 
 
 
