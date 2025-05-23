@@ -487,13 +487,17 @@ AllFields:
     - [bq, genre_facet:"Rezension"^0.01]
     - [bq, genre_facet:"book-review"^0.01]
     - [bq, title_full:“РЕЦЕНЗИЯ“ˆ0.1]
-    -	[bq, title_fullStr:“РЕЦЕНЗИЯ“ˆ0.1]
-    -	[bq, title_full:“Rezension“ˆ0.1]
-    -	[bq, title_fullStr:“Rezension“ˆ0.1]
-    -	[bq, title_full:“book-review“ˆ0.1]
-    -	[bq, title_fullStr:“book-review“ˆ0.1]
-    -	[bq, title_full:“ recension“ˆ0.1]
-    -	[bq, title_fullStr:“ recension“ˆ0.1]
+    - [bq, title_fullStr:“РЕЦЕНЗИЯ“ˆ0.1]
+    - [bq, title_full:“Rezension“ˆ0.1]
+    - [bq, title_fullStr:“Rezension“ˆ0.1]
+    - [bq, title_full:“book-review“ˆ0.1]
+    - [bq, title_fullStr:“book-review“ˆ0.1]
+    - [bq, title_full:“ recension“ˆ0.1]
+    - [bq, title_fullStr:“ recension“ˆ0.1]
+
+
+
+    
     
 
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
