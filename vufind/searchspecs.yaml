@@ -264,7 +264,8 @@ Author:
     - [bq, publishDateSort:2015^30]
     - [bq, publishDateSort:2014^25]
     - [bq, publishDateSort:2013^20]
-    - [bq, publishDateSort:2024^100]  
+    - [bq, publishDateSort:2024^100] 
+    - [bq, publishDateSort:2025^110] 
   
  #Verbesserte Phrasensuche, eWW
 QueryFields:
@@ -485,6 +486,15 @@ AllFields:
     - [bq, format_facet:"Serienband"^0.01]
     - [bq, genre_facet:"Rezension"^0.01]
     - [bq, genre_facet:"book-review"^0.01]
+    -	[bq, title_full:“РЕЦЕНЗИЯ“ˆ0.1]
+    -	[bq, title_fullStr:“РЕЦЕНЗИЯ“ˆ0.1]
+    -	[bq, title_full:“Rezension“ˆ0.1]
+    -	[bq, title_fullStr:“Rezension“ˆ0.1]
+    -	[bq, title_full:“book-review“ˆ0.1]
+    -	[bq, title_fullStr:“book-review“ˆ0.1]
+    -	[bq, title_full:“ recension“ˆ0.1]
+    -	[bq, title_fullStr:“ recension“ˆ0.1]
+
 # Alternative zum abgestufen Boosting des Erscheinungsjahres, eWW
 # see #35
 # see #59
